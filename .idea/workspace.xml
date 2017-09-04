@@ -55,8 +55,8 @@
         <entry file="file://$PROJECT_DIR$/interface.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="84">
-                <caret line="325" column="18" selection-start-line="325" selection-start-column="18" selection-end-line="325" selection-end-column="18" />
+              <first_editor relative-caret-position="312">
+                <caret line="13" column="3" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
                 <folding>
                   <marker date="1504531539000" expanded="true" signature="115:148" ph="{&quot;telephone&quot;: &quot;17621181235&quot;...}" />
                   <marker date="1504531539000" expanded="true" signature="171:228" ph="{&quot;status&quot;: 1...}" />
@@ -899,12 +899,12 @@
       <workItem from="1504181827060" duration="1673000" />
       <workItem from="1504183797314" duration="2261000" />
       <workItem from="1504258784316" duration="1256000" />
-      <workItem from="1504496851499" duration="6034000" />
+      <workItem from="1504496851499" duration="6222000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11224000" />
+    <option name="totallyTimeSpent" value="11412000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="807" extended-state="6" />
@@ -1241,8 +1241,8 @@
     <entry file="file://$PROJECT_DIR$/interface.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="84">
-            <caret line="325" column="18" selection-start-line="325" selection-start-column="18" selection-end-line="325" selection-end-column="18" />
+          <first_editor relative-caret-position="312">
+            <caret line="13" column="3" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
             <folding>
               <marker date="1504531539000" expanded="true" signature="115:148" ph="{&quot;telephone&quot;: &quot;17621181235&quot;...}" />
               <marker date="1504531539000" expanded="true" signature="171:228" ph="{&quot;status&quot;: 1...}" />

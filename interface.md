@@ -1,7 +1,7 @@
 nekoStroy前后端接口文档
 =================
 
-####1.获取手机验证码
+#### 1.获取手机验证码
 url: /front/account/getCheckCode
 
 method: post
@@ -22,7 +22,7 @@ response:
 }
 ```
 
-####2.提交预约信息（不需注册,未注册自动注册）
+#### 2.提交预约信息（不需注册,未注册自动注册）
 url:/front/account/login
 
 method:post
@@ -47,7 +47,7 @@ response:
 }
 ```
 
-####3.同人专区-类型枚举
+#### 3.同人专区-类型枚举
 
 url:/front/doujin/getTypeEnum
 
@@ -72,7 +72,7 @@ response:
 }
 ```
 
-####4.同人专区-获得某类型的内容
+#### 4.同人专区-获得某类型的内容
 
 url:/front/doujin/getContentList
 
@@ -110,7 +110,7 @@ response:
 }
 ```
 
-####5.新闻资讯-获取分类枚举
+#### 5.新闻资讯-获取分类枚举
 
 url:/front/news/getNewsTypeEnum
 
@@ -134,7 +134,7 @@ response:
 }
 ```
 
-####6.新闻资讯-获取内容列表
+#### 6.新闻资讯-获取内容列表
 url:/front/news/getContentList
 
 method:get
@@ -165,7 +165,7 @@ response:
 }
 ```
 
-####7.新闻资讯-获取某资讯详情
+#### 7.新闻资讯-获取某资讯详情
 url:/front/news/getNewsDetail/{newsId}
 
 method:get
@@ -186,7 +186,7 @@ response:
 }
 ```
 
-####8.活动专区-类型枚举
+#### 8.活动专区-类型枚举
 
 url:/front/activity/getTypeEnum
 
@@ -211,7 +211,7 @@ response:
 }
 ```
 
-####9.同人专区-获得某类型的内容
+#### 9.同人专区-获得某类型的内容
 
 url:/front/activity/getContentList
 
@@ -247,7 +247,7 @@ response:
 }
 ```
 
-####10.活动专区-获取某活动详情
+#### 10.活动专区-获取某活动详情
 url:/front/activity/getActivityDetail/{activityId}
 
 method:get
@@ -268,7 +268,7 @@ response:
 }
 ```
 
-####11.首页-故事梗概及玩法说明视频地址
+#### 11.首页-故事梗概及玩法说明视频地址
 url:/front/mainPage/getVideoPage
 
 method:get
@@ -290,7 +290,7 @@ response:
 }
 ```
 
-####12.首页-获取footer内容
+#### 12.首页-获取footer内容
 url:/front/mainPage/getFooterContent
 
 method:get
@@ -323,7 +323,7 @@ response:
 }
 ```
 
-####13.首页-下载地址与二维码
+#### 13.首页-下载地址与二维码
 
 url: /front/mainPage/getDownLoads
 
