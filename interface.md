@@ -51,7 +51,7 @@ response:
 
 url:/front/doujin/getTypeEnum
 
-method:get
+method:post
 
 request:
 ```json
@@ -76,7 +76,7 @@ response:
 
 url:/front/doujin/getContentList
 
-method:get
+method:post
 
 request:
 ```json
@@ -114,7 +114,7 @@ response:
 
 url:/front/news/getNewsTypeEnum
 
-method:get
+method:post
 
 request:
 ``{}``
@@ -137,7 +137,7 @@ response:
 #### 6.新闻资讯-获取内容列表
 url:/front/news/getContentList
 
-method:get
+method:post
 
 request:
 ```json
@@ -168,7 +168,7 @@ response:
 #### 7.新闻资讯-获取某资讯详情
 url:/front/news/getNewsDetail/{newsId}
 
-method:get
+method:post
 
 request:
 ``{}``
@@ -190,7 +190,7 @@ response:
 
 url:/front/activity/getTypeEnum
 
-method:get
+method:post
 
 request:
 ```json
@@ -215,7 +215,7 @@ response:
 
 url:/front/activity/getContentList
 
-method:get
+method:post
 
 request:
 ```json
@@ -250,7 +250,7 @@ response:
 #### 10.活动专区-获取某活动详情
 url:/front/activity/getActivityDetail/{activityId}
 
-method:get
+method:post
 
 request:
 ``{}``
@@ -271,7 +271,7 @@ response:
 #### 11.首页-故事梗概及玩法说明视频地址
 url:/front/mainPage/getVideoPage
 
-method:get
+method:post
 
 request:
 ```json
@@ -293,7 +293,7 @@ response:
 #### 12.首页-获取footer内容
 url:/front/mainPage/getFooterContent
 
-method:get
+method:post
 
 request:
 ```json
