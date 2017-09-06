@@ -211,7 +211,7 @@ response:
 }
 ```
 
-#### 9.同人专区-获得某类型的内容
+#### 9.活动专区-获得某类型的内容
 
 url:/front/activity/getContentList
 
