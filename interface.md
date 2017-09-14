@@ -1,6 +1,8 @@
 nekoStroy前后端接口文档
 =================
 
+[TOC]
+
 #### 1.获取手机验证码
 url: /front/account/getCheckCode
 
@@ -262,6 +264,7 @@ response:
     "title":"这是标题",
     "writer":"这是作者",
     "dataTime":"2017-07-19 10:38:04",
+    "imgUrl":"http://xxxxxxxxxx",//点开后大图的地址
     "content":"非常长的内容 包括\n\r换行符以及各种空格  甚至插入图片 建议使用TextArea"
   },
   "status":1
@@ -336,5 +339,125 @@ response:
   "Android":"xxxx",
   "IOS":"xxxxxx",
   "PC":"xxxxxx"
+}
+```
+
+#### 14.游戏攻略-获取分类枚举
+
+url:/front/strategy/getStrategyTypeEnum
+
+method:post
+
+request:
+``{}``
+
+response:
+```json
+{
+  "data":{
+          "typeList":[
+          {
+            "typeCode":1,
+            "typeName":"最新消息"
+          },{},{}
+          ]
+      },
+  "status":1
+}
+```
+
+#### 15.游戏攻略-获取攻略内容
+url:/front/strategy/getContentList
+
+method:post
+
+request:
+```json
+{
+    "typeCode":2,
+    "pageNo":1,
+    "pageSize":12
+}
+```
+
+response:
+```json
+{
+  "data":{
+    "contentList":[
+      {
+        "id":3,
+        "title":"这是标题",
+        "subContent":"这是被剪剩下的一部分内容xxxx",
+        "dateTime":"2017-07-19 10:38:04" //格式 2017-07-26 12:38:04
+      },{},{}
+    ]
+  },
+  "status":1
+}
+```
+
+#### 16.游戏攻略-获取攻略详细内容
+url:/front/strategy/getStrategyDetail/{newsId}
+
+method:post
+
+request:
+``{}``
+
+response:
+```json
+{
+  "data":{
+    "title":"这是标题",
+    "writer":"这是作者",
+    "dataTime":"2017-07-19 10:38:04",
+    "content":"非常长的内容 包括\n\r换行符以及各种空格  甚至插入图片 建议使用TextArea"
+  },
+  "status":1
+}
+```
+
+#### 17.首页轮播位 种类枚举
+
+url:/front/mainPage/enum/getTypeEnum
+
+method:post
+
+request:``{}``
+
+response:
+```json
+{
+  "data":{
+    "typeList":[
+      {
+        "code":4
+        "name":"最新",
+        "typeLink":"http://xxxxxxx/" //后面直接拼该类型ID即可用
+      },{},{},{}
+    ]
+  }
+
+}
+```
+
+#### 18.获取首页框某分类列表
+url:/front/mainPage/getTypeList/{typeCode}
+
+method:post
+
+request:``{}``
+
+response:
+```json
+{
+  data:[
+  {
+    "id":3,
+    "content":"手游不知道什么时候就公测啦"
+  },{},{},{}
+  ]
+
 }
 ```
