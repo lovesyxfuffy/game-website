@@ -495,3 +495,44 @@ response:
 }
 ```
 
+#### 21.预约接口
+url:/front/order/postOrder
+
+method:post
+
+request:
+```json
+{
+  "telephone":"17621181235"
+}
+```
+
+response:
+```json
+{
+  "data":{
+
+  },
+  "status":1
+}
+```
+
+#### 22.发送短信接口
+url:/front/order/postSms
+
+method:post
+
+request:
+```json
+{
+  "telephone":"17621181235"
+}
+```
+
+response:
+```json
+{
+  "data":{},
+  "status":1
+}
+```
