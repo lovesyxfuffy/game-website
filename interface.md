@@ -525,7 +525,8 @@ method:post
 request:
 ```json
 {
-  "telephone":"17621181235"
+  "telephone":"17621181235",
+  "checkCode":"554603"
 }
 ```
 
