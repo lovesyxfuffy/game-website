@@ -496,7 +496,7 @@ response:
 ```
 
 #### 21.预约接口
-url:/front/order/postOrder
+url:/front/reserve/postReserve
 
 method:post
 
@@ -518,7 +518,7 @@ response:
 ```
 
 #### 22.发送短信接口
-url:/front/order/postSms
+url:/front/reserve/postSms
 
 method:post
 
