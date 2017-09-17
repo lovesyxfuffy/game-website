@@ -431,7 +431,7 @@ response:
   "data":{
     "typeList":[
       {
-        "code":4
+        "code":4,
         "name":"最新",
         "typeLink":"http://xxxxxxx/" //后面直接拼该类型ID即可用
       },{},{},{}
@@ -460,3 +460,38 @@ response:
 
 }
 ```
+#### 19.获取首页轮播图
+url: /front/mainPage/getImgs
+
+method:post
+
+request:``{}``
+
+response:
+```json
+{
+    "data":[
+      "xxxxxxxxxxx","xxxxxxxxxxx","xxxxxxx"
+    ],
+    "status":1
+}
+```
+
+
+#### 20.获取预约人数
+url: /front/mainPage/getOrderedAmount
+
+method:post
+
+request:``{}``
+
+response:
+```json
+{
+  "data":{
+    "amount":100
+  },
+  "status":1
+}
+```
+
