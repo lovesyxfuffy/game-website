@@ -23,10 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="game-website" />
+        <module name="neko-story-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="game-website" target="1.5" />
+      <module name="neko-story-web" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

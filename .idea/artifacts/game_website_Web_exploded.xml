@@ -2,10 +2,10 @@
   <artifact type="exploded-war" name="game-website:Web exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/game_website_Web_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="game-website/web/Web" />
+      <element id="javaee-facet-resources" facet="neko-story-web/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="game-website" />
+          <element id="module-output" name="neko-story-web" />
         </element>
       </element>
     </root>

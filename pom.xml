@@ -6,7 +6,6 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>nekostoryweb</name>
-    <url>http://maven.apache.org</url>
 
 
 
@@ -49,6 +48,14 @@
             <version>7.0</version>
         </dependency>
 
+
+
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.23</version>
+        </dependency>
 
         <!-- spring核心包 -->
         <dependency>
@@ -209,12 +216,7 @@
 
 
 
-        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.2</version>
-        </dependency>
+
 
 
         <!-- https://mvnrepository.com/artifact/org.json/json -->
@@ -224,22 +226,11 @@
             <version>20160810</version>
         </dependency>
 
-        <dependency>
-            <groupId>Pingplusplus</groupId>
-            <artifactId>pingpp-java</artifactId>
-            <version>2.2.3</version>
-            <type>jar</type>
-        </dependency>
-
-
-
-
 
 
     </dependencies>
 
     <build>
-        <finalName>com.nekostoryweb</finalName>
         <plugins>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
