@@ -9,13 +9,18 @@
                         http://www.springframework.org/schema/context/spring-context-3.1.xsd
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+    <mvc:annotation-driven/>
+    <mvc:resources location="classpath:assets/" mapping="/assets/**"/>
+
     <!--避免扫描Service注解 和 Repository 托管给AOP事务-->
     <context:component-scan base-package="com.nekostoryweb">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
 
-    <mvc:annotation-driven/>
+
+
 
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter"
@@ -35,61 +40,51 @@
             </list>
         </property>
     </bean>
-    <!--&lt;!&ndash; 定义跳转的文件的前后缀 ，视图模式配置&ndash;&gt;-->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
-        <property name="prefix" value="/admin/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
-
-    <!--<mvc:interceptors>-->
-        <!--&lt;!&ndash; 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 &ndash;&gt;-->
-        <!--<bean class="com.common.interceptor.SessionSecurityInterceptor"/>-->
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/adminUser/*"/>-->
-            <!--&lt;!&ndash; 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 &ndash;&gt;-->
-            <!--<bean class="com.common.interceptor.AdminInterceptor"/>-->
-        <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
-
-    <mvc:default-servlet-handler/>
-
 
     <!-- 配置Freemarker属性文件路径 -->
     <bean id="freemarkerConfiguration"
           class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="location" value="classpath:config/freemarker.properties" />
+        <property name="location" value="classpath:config/freemarker.properties"/>
     </bean>
     <!-- 配置freeMarker模板加载地址 -->
     <bean id="freemarkerConfig"
           class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <!-- 视图解析器在/WEB-INF/ftl/路径下扫描视图文件 -->
-        <property name="templateLoaderPath" value="/WEB-INF/ftl/" />
+        <property name="templateLoaderPath" value="/WEB-INF/ftl/"/>
         <property name="freemarkerVariables">
             <map>
-                <entry key="xml_escape" value-ref="fmXmlEscape" />
+                <entry key="xml_escape" value-ref="fmXmlEscape"/>
+                <entry key="block" value-ref="BlockDirective"/>
+                <entry key="override" value-ref="OverrideDirective"/>
+                <entry key="extends" value-ref="ExtendsDirective"/>
+                <entry key="super" value-ref="superDirective"/>
             </map>
         </property>
     </bean>
-    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
+    <bean id="BlockDirective" class="cn.org.rapid_framework.freemarker.directive.BlockDirective"/>
+    <bean id="OverrideDirective" class="cn.org.rapid_framework.freemarker.directive.OverrideDirective"/>
+    <bean id="ExtendsDirective" class="cn.org.rapid_framework.freemarker.directive.ExtendsDirective"/>
+    <bean id="superDirective" class="cn.org.rapid_framework.freemarker.directive.SuperDirective"/>
+
+    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>
     <!-- 配置freeMarker视图解析器 -->
     <bean id="freemakerViewResolver"
           class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
         <property name="viewClass"
-                  value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+                  value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
         <!-- 扫描路径內所有以ftl結尾的文件 -->
         <property name="viewNames">
             <array>
                 <value>*.ftl</value>
             </array>
         </property>
-        <property name="contentType" value="text/html; charset=UTF-8" />
-        <property name="exposeRequestAttributes" value="true" />
-        <property name="exposeSessionAttributes" value="true" />
-        <property name="exposeSpringMacroHelpers" value="true" />
-        <property name="requestContextAttribute" value="request" />
+        <property name="contentType" value="text/html; charset=UTF-8"/>
+        <property name="exposeRequestAttributes" value="true"/>
+        <property name="exposeSessionAttributes" value="true"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <property name="requestContextAttribute" value="request"/>
         <!-- 给视图解析器配置优先級，你可以给之前jsp视图解析器的值配为2 -->
-        <property name="order" value="1" />
+        <property name="order" value="1"/>
     </bean>
     <!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
     <bean id="multipartResolver"

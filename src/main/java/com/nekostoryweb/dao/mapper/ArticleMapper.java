@@ -4,7 +4,9 @@ import com.nekostoryweb.dao.po.Article;
 import com.nekostoryweb.dao.po.ArticleExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ArticleMapper {
     int countByExample(ArticleExample example);
 

@@ -4,7 +4,9 @@ import com.nekostoryweb.dao.po.Account;
 import com.nekostoryweb.dao.po.AccountExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface AccountMapper {
     int countByExample(AccountExample example);
 

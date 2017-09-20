@@ -4,7 +4,9 @@ import com.nekostoryweb.dao.po.Reserve;
 import com.nekostoryweb.dao.po.ReserveExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ReserveMapper {
     int countByExample(ReserveExample example);
 

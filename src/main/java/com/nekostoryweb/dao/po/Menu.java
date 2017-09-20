@@ -1,7 +1,5 @@
 package com.nekostoryweb.dao.po;
 
-import java.util.Date;
-
 public class Menu {
     private Integer id;
 
@@ -11,9 +9,13 @@ public class Menu {
 
     private Integer fatherId;
 
-    private Date addTime;
+    private String menuIcon;
 
-    private Date updateTime;
+    private String menuUrl;
+
+    private Byte isOpen;
+
+    private Byte isActive;
 
     public Integer getId() {
         return id;
@@ -47,19 +49,35 @@ public class Menu {
         this.fatherId = fatherId;
     }
 
-    public Date getAddTime() {
-        return addTime;
+    public String getMenuIcon() {
+        return menuIcon;
     }
 
-    public void setAddTime(Date addTime) {
-        this.addTime = addTime;
+    public void setMenuIcon(String menuIcon) {
+        this.menuIcon = menuIcon == null ? null : menuIcon.trim();
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public String getMenuUrl() {
+        return menuUrl;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setMenuUrl(String menuUrl) {
+        this.menuUrl = menuUrl == null ? null : menuUrl.trim();
+    }
+
+    public Byte getIsOpen() {
+        return isOpen;
+    }
+
+    public void setIsOpen(Byte isOpen) {
+        this.isOpen = isOpen;
+    }
+
+    public Byte getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Byte isActive) {
+        this.isActive = isActive;
     }
 }

@@ -4,7 +4,9 @@ import com.nekostoryweb.dao.po.Strategy;
 import com.nekostoryweb.dao.po.StrategyExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface StrategyMapper {
     int countByExample(StrategyExample example);
 

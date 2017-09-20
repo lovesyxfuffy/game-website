@@ -4,7 +4,9 @@ import com.nekostoryweb.dao.po.Menu;
 import com.nekostoryweb.dao.po.MenuExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface MenuMapper {
     int countByExample(MenuExample example);
 

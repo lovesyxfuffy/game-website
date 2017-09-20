@@ -4,7 +4,9 @@ import com.nekostoryweb.dao.po.Imgs;
 import com.nekostoryweb.dao.po.ImgsExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ImgsMapper {
     int countByExample(ImgsExample example);
 

@@ -4,7 +4,9 @@ import com.nekostoryweb.dao.po.Config;
 import com.nekostoryweb.dao.po.ConfigExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ConfigMapper {
     int countByExample(ConfigExample example);
 

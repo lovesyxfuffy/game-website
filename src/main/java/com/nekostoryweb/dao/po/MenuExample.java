@@ -1,7 +1,6 @@
 package com.nekostoryweb.dao.po;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MenuExample {
@@ -355,123 +354,263 @@ public class MenuExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeIsNull() {
-            addCriterion("add_time is null");
+        public Criteria andMenuIconIsNull() {
+            addCriterion("menu_icon is null");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeIsNotNull() {
-            addCriterion("add_time is not null");
+        public Criteria andMenuIconIsNotNull() {
+            addCriterion("menu_icon is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeEqualTo(Date value) {
-            addCriterion("add_time =", value, "addTime");
+        public Criteria andMenuIconEqualTo(String value) {
+            addCriterion("menu_icon =", value, "menuIcon");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeNotEqualTo(Date value) {
-            addCriterion("add_time <>", value, "addTime");
+        public Criteria andMenuIconNotEqualTo(String value) {
+            addCriterion("menu_icon <>", value, "menuIcon");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeGreaterThan(Date value) {
-            addCriterion("add_time >", value, "addTime");
+        public Criteria andMenuIconGreaterThan(String value) {
+            addCriterion("menu_icon >", value, "menuIcon");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("add_time >=", value, "addTime");
+        public Criteria andMenuIconGreaterThanOrEqualTo(String value) {
+            addCriterion("menu_icon >=", value, "menuIcon");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeLessThan(Date value) {
-            addCriterion("add_time <", value, "addTime");
+        public Criteria andMenuIconLessThan(String value) {
+            addCriterion("menu_icon <", value, "menuIcon");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeLessThanOrEqualTo(Date value) {
-            addCriterion("add_time <=", value, "addTime");
+        public Criteria andMenuIconLessThanOrEqualTo(String value) {
+            addCriterion("menu_icon <=", value, "menuIcon");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeIn(List<Date> values) {
-            addCriterion("add_time in", values, "addTime");
+        public Criteria andMenuIconLike(String value) {
+            addCriterion("menu_icon like", value, "menuIcon");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeNotIn(List<Date> values) {
-            addCriterion("add_time not in", values, "addTime");
+        public Criteria andMenuIconNotLike(String value) {
+            addCriterion("menu_icon not like", value, "menuIcon");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeBetween(Date value1, Date value2) {
-            addCriterion("add_time between", value1, value2, "addTime");
+        public Criteria andMenuIconIn(List<String> values) {
+            addCriterion("menu_icon in", values, "menuIcon");
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeNotBetween(Date value1, Date value2) {
-            addCriterion("add_time not between", value1, value2, "addTime");
+        public Criteria andMenuIconNotIn(List<String> values) {
+            addCriterion("menu_icon not in", values, "menuIcon");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeIsNull() {
-            addCriterion("update_time is null");
+        public Criteria andMenuIconBetween(String value1, String value2) {
+            addCriterion("menu_icon between", value1, value2, "menuIcon");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeIsNotNull() {
-            addCriterion("update_time is not null");
+        public Criteria andMenuIconNotBetween(String value1, String value2) {
+            addCriterion("menu_icon not between", value1, value2, "menuIcon");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeEqualTo(Date value) {
-            addCriterion("update_time =", value, "updateTime");
+        public Criteria andMenuUrlIsNull() {
+            addCriterion("menu_url is null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotEqualTo(Date value) {
-            addCriterion("update_time <>", value, "updateTime");
+        public Criteria andMenuUrlIsNotNull() {
+            addCriterion("menu_url is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeGreaterThan(Date value) {
-            addCriterion("update_time >", value, "updateTime");
+        public Criteria andMenuUrlEqualTo(String value) {
+            addCriterion("menu_url =", value, "menuUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("update_time >=", value, "updateTime");
+        public Criteria andMenuUrlNotEqualTo(String value) {
+            addCriterion("menu_url <>", value, "menuUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeLessThan(Date value) {
-            addCriterion("update_time <", value, "updateTime");
+        public Criteria andMenuUrlGreaterThan(String value) {
+            addCriterion("menu_url >", value, "menuUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeLessThanOrEqualTo(Date value) {
-            addCriterion("update_time <=", value, "updateTime");
+        public Criteria andMenuUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("menu_url >=", value, "menuUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeIn(List<Date> values) {
-            addCriterion("update_time in", values, "updateTime");
+        public Criteria andMenuUrlLessThan(String value) {
+            addCriterion("menu_url <", value, "menuUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotIn(List<Date> values) {
-            addCriterion("update_time not in", values, "updateTime");
+        public Criteria andMenuUrlLessThanOrEqualTo(String value) {
+            addCriterion("menu_url <=", value, "menuUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeBetween(Date value1, Date value2) {
-            addCriterion("update_time between", value1, value2, "updateTime");
+        public Criteria andMenuUrlLike(String value) {
+            addCriterion("menu_url like", value, "menuUrl");
             return (Criteria) this;
         }
 
-        public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
-            addCriterion("update_time not between", value1, value2, "updateTime");
+        public Criteria andMenuUrlNotLike(String value) {
+            addCriterion("menu_url not like", value, "menuUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUrlIn(List<String> values) {
+            addCriterion("menu_url in", values, "menuUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUrlNotIn(List<String> values) {
+            addCriterion("menu_url not in", values, "menuUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUrlBetween(String value1, String value2) {
+            addCriterion("menu_url between", value1, value2, "menuUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUrlNotBetween(String value1, String value2) {
+            addCriterion("menu_url not between", value1, value2, "menuUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenIsNull() {
+            addCriterion("is_open is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenIsNotNull() {
+            addCriterion("is_open is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenEqualTo(Byte value) {
+            addCriterion("is_open =", value, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenNotEqualTo(Byte value) {
+            addCriterion("is_open <>", value, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenGreaterThan(Byte value) {
+            addCriterion("is_open >", value, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenGreaterThanOrEqualTo(Byte value) {
+            addCriterion("is_open >=", value, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenLessThan(Byte value) {
+            addCriterion("is_open <", value, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenLessThanOrEqualTo(Byte value) {
+            addCriterion("is_open <=", value, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenIn(List<Byte> values) {
+            addCriterion("is_open in", values, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenNotIn(List<Byte> values) {
+            addCriterion("is_open not in", values, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenBetween(Byte value1, Byte value2) {
+            addCriterion("is_open between", value1, value2, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOpenNotBetween(Byte value1, Byte value2) {
+            addCriterion("is_open not between", value1, value2, "isOpen");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveIsNull() {
+            addCriterion("is_active is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveIsNotNull() {
+            addCriterion("is_active is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveEqualTo(Byte value) {
+            addCriterion("is_active =", value, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveNotEqualTo(Byte value) {
+            addCriterion("is_active <>", value, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveGreaterThan(Byte value) {
+            addCriterion("is_active >", value, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveGreaterThanOrEqualTo(Byte value) {
+            addCriterion("is_active >=", value, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveLessThan(Byte value) {
+            addCriterion("is_active <", value, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveLessThanOrEqualTo(Byte value) {
+            addCriterion("is_active <=", value, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveIn(List<Byte> values) {
+            addCriterion("is_active in", values, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveNotIn(List<Byte> values) {
+            addCriterion("is_active not in", values, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveBetween(Byte value1, Byte value2) {
+            addCriterion("is_active between", value1, value2, "isActive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsActiveNotBetween(Byte value1, Byte value2) {
+            addCriterion("is_active not between", value1, value2, "isActive");
             return (Criteria) this;
         }
     }
