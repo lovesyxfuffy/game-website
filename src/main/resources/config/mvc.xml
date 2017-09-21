@@ -10,16 +10,24 @@
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
+
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:config/app.properties</value>
+            </list>
+        </property>
+    </bean>
     <mvc:annotation-driven/>
-    <mvc:resources location="classpath:assets/" mapping="/assets/**"/>
+    <mvc:resources location="${assetsPath}" mapping="/assets/**"/>
+    <mvc:resources location="${staticPath}" mapping="/static/**"/>
 
     <!--避免扫描Service注解 和 Repository 托管给AOP事务-->
     <context:component-scan base-package="com.nekostoryweb">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
-
-
 
 
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->

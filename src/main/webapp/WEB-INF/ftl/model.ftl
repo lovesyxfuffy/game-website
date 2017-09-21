@@ -11,6 +11,10 @@
 
 </@override>
 
+<@override name="pageHeader">
+
+</@override>
+
 <@override name="contents">
 
 </@override>

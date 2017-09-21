@@ -12,7 +12,7 @@ public interface ConfigMapper {
 
     int deleteByExample(ConfigExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String configKey);
 
     int insert(Config record);
 
@@ -20,7 +20,7 @@ public interface ConfigMapper {
 
     List<Config> selectByExample(ConfigExample example);
 
-    Config selectByPrimaryKey(Integer id);
+    Config selectByPrimaryKey(String configKey);
 
     int updateByExampleSelective(@Param("record") Config record, @Param("example") ConfigExample example);
 
@@ -29,4 +29,6 @@ public interface ConfigMapper {
     int updateByPrimaryKeySelective(Config record);
 
     int updateByPrimaryKey(Config record);
+
+    int batchInsert(List<Config> configList);
 }

@@ -70,6 +70,12 @@
 
             <div class="page-content">
 
+                <div class="page-header">
+                    <h1>
+                    <@block name="pageHeader"></@block>
+                    </h1>
+                </div><!-- /.page-header -->
+
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
@@ -85,8 +91,8 @@
         <div class="footer-inner">
             <div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">山东大学</span>
-							ING工作室 &copy; 2017-2022
+							<span class="blue bolder">Cat</span>
+							Studio &copy; 2017-
 						</span>
 
                 &nbsp; &nbsp;

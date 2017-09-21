@@ -64,6 +64,8 @@ public class SystemServiceImpl implements SystemService {
                     childBreadCrumbDto.setUrl(row.getMenuUrl());
                     childBreadCrumbDto.setName(row.getMenuName());
                     childBreadCrumbDto.setChild(current);
+                    row.setActive(true);
+                    row.setOpen(true);
                     current = childBreadCrumbDto;
                 }
                 returnResult.put("breadCrumb", current);
