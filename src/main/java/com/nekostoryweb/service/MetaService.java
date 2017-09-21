@@ -9,5 +9,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 public interface MetaService {
     String saveFile(CommonsMultipartFile file);
 
-    void saveConfig(GameLinkDto gameLinkDto);
+
+
+    void saveConfig(Object dto, String type);
 }

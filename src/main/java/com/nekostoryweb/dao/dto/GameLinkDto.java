@@ -14,4 +14,9 @@ public class GameLinkDto {
     String pcDownloadUrl;
     String mainPageVideoUrl;
     String QRCodeUrl;
+    String storyBackground;
+    String operateVideoUrl;
+    String roomVideoUrl;
+    String orderVideoUrl;
+    String propagandaVideoUrl;
 }

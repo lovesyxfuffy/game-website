@@ -130,9 +130,11 @@
 <@block name="specificInlineJS"></@block>
 
 <script>
+
     function makeMenu(menu) {
         var child = menu.children;
         var menuReturn = '';
+        console.log(menu)
 
         if (child != undefined && child != null && child.length != 0) {
             var childStr = '';
@@ -141,9 +143,8 @@
             }
             var active = 'active open';
 
-
             var menuReturn = '<li class="' + (menu.active ? active : "") + '">\
-                <a href="#" class="dropdown-toggle">\
+                <a href="' + (menu.menuUrl == null ? "#" : menu.menuUrl) + '" class="dropdown-toggle" onclick="changeUrl(\'' + (menu.menuUrl == null ? "#" : menu.menuUrl) + '\')">\
                 <i class="' + menu.menuIcon + '"></i>\
                 <span class="menu-text"> ' + menu.menuName + ' </span>\
 \
@@ -159,7 +160,7 @@
         } else {
             active = 'active';
             menuReturn = '<li class="' + (menu.active ? active : "") + '">\
-                <a href="#" class="dropdown-toggle">\
+                <a href="' + (menu.menuUrl == null ? "#" : menu.menuUrl) + '" class="dropdown-toggle" onclick="changeUrl(\'' + (menu.menuUrl == null ? "#" : menu.menuUrl) + '\')">\
                 <i class="' + menu.menuIcon + '"></i>\
                 <span class="menu-text"> ' + menu.menuName + ' </span>\
 \
@@ -193,12 +194,15 @@
         result = result + '</ul><!-- /.breadcrumb -->';
         return result;
     }
-
+    function changeUrl(url) {
+        if (url != undefined && url != null)
+            window.location.href = url
+    }
     $(document).ready(function () {
         $.ajax({
             type: "post",
             data: {
-                requestURI:"${requestURI}"
+                requestURI: "${requestURI}"
             },
             //TODO 
             url: "/api/system/getMenu",

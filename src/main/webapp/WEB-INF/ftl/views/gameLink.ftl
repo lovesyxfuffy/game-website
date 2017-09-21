@@ -70,6 +70,48 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">故事背景视频地址</label>
+
+        <div class="col-sm-9">
+            <input type="text" id="storyBackground" name="storyBackground" placeholder="storyBackground"
+                   class="col-xs-10 col-sm-5"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">玩法-经营视频地址</label>
+
+        <div class="col-sm-9">
+            <input type="text" id="operateVideoUrl" name="operateVideoUrl" placeholder="operateVideoUrl"
+                   class="col-xs-10 col-sm-5"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">玩法-房间视频地址</label>
+
+        <div class="col-sm-9">
+            <input type="text" id="roomVideoUrl" name="roomVideoUrl" placeholder="roomVideoUrl"
+                   class="col-xs-10 col-sm-5"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">玩法-订单视频地址</label>
+
+        <div class="col-sm-9">
+            <input type="text" id="orderVideoUrl" name="orderVideoUrl" placeholder="orderVideoUrl"
+                   class="col-xs-10 col-sm-5"/>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">玩法-宣传视频地址</label>
+
+        <div class="col-sm-9">
+            <input type="text" id="propagandaVideoUrl" name="propagandaVideoUrl" placeholder="propagandaVideoUrl"
+                   class="col-xs-10 col-sm-5"/>
+        </div>
+    </div>
+
     <div class="clearfix form-actions">
         <div class="col-md-offset-3 col-md-9">
             <button id="submitButton" class="btn btn-info" type="button">
@@ -584,17 +626,19 @@
     $("#submitButton").click(function () {
         var form = new FormData(document.getElementById("uploadForm"));
         $.ajax({
+            success: function (data) {
+                if (data.status == 1) {
+                    alert("上传成功")
+                    $("#uploadForm")[0].reset()
+                }
+                else
+                    alert(data.data.msg)
+            },
             type: "post",
             data: form,
             url: "/api/metaManage/uploadGameLink",
             processData: false,
             contentType: false,
-            success: function (data) {
-                if (data.status == 1)
-                    alert("上传成功")
-                else
-                    alert(data.data.msg)
-            },
             error: function (e) {
                 alert("错误！！");
             }

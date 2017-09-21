@@ -15,10 +15,10 @@ import java.util.Map;
 @Controller
 @RequestMapping("/api/views")
 public class ViewController {
-    @RequestMapping(value = "/gameLink",method = RequestMethod.GET)
-    public String getView(Model model , HttpServletRequest request){
+    @RequestMapping(value = "/{vieName}",method = RequestMethod.GET)
+    public String getView(Model model, HttpServletRequest request, @PathVariable("vieName") String vieName){
         model.addAttribute("requestURI",request.getRequestURI());
 
-        return "views/gameLink.ftl";
+        return "views/"+vieName+".ftl";
     }
 }

@@ -1,7 +1,9 @@
 package com.nekostoryweb.controller;
 
 import com.nekostoryweb.Exception.BizException;
+import com.nekostoryweb.dao.dto.AboutUsDto;
 import com.nekostoryweb.dao.dto.GameLinkDto;
+import com.nekostoryweb.dao.dto.OfficialInfoDto;
 import com.nekostoryweb.service.MetaService;
 import com.nekostoryweb.utils.WebUtil;
 import lombok.Cleanup;
@@ -34,8 +36,25 @@ public class MetaManageController {
     @RequestMapping(value = "uploadGameLink", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> uploadGameLink(@RequestParam("QRCode") CommonsMultipartFile QRCode, GameLinkDto gameLinkDto) {
         String fileName = metaService.saveFile(QRCode);
-        gameLinkDto.setQRCodeUrl(staticFilePath+fileName);
-        metaService.saveConfig(gameLinkDto);
+        if (fileName != null)
+            gameLinkDto.setQRCodeUrl(staticFilePath + fileName);
+        metaService.saveConfig(gameLinkDto,"sidebar");
+        return WebUtil.result("");
+    }
+
+    @RequestMapping(value = "uploadOfficialInfo",method = RequestMethod.POST)
+    public ResponseEntity<Map<String,Object>> uploadOfficialInfo(@RequestParam("wechatFile")CommonsMultipartFile wechatFile,
+                                                                 @RequestParam("weiboFile")CommonsMultipartFile weiboFile,
+                                                                 OfficialInfoDto officialInfoDto){
+        officialInfoDto.setWechatOfficialUrl(metaService.saveFile(wechatFile));
+        officialInfoDto.setWeiboOfficialUrl(metaService.saveFile(weiboFile));
+        metaService.saveConfig(officialInfoDto,"officialInfo");
+        return WebUtil.result("");
+    }
+
+    @RequestMapping(value = "uploadAboutUs",method = RequestMethod.POST)
+    public ResponseEntity<Map<String,Object>> uploadAboutUs(AboutUsDto aboutUsDto){
+        metaService.saveConfig(aboutUsDto,"aboutUs");
         return WebUtil.result("");
     }
 }

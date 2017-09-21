@@ -38,34 +38,46 @@ public class MetaServiceImpl implements MetaService {
             properties.load(inputStream);
             String savePath = properties.getProperty("savePath");
             String saveFile = savePath + file.getOriginalFilename();
+            if("".equals(file.getOriginalFilename()) || file.getOriginalFilename() == null)
+                return null;
             File newFile = new File(saveFile);
+
             file.transferTo(newFile);
+            File afterFile = new File(saveFile);
+            while(!afterFile.exists()){
+                Thread.sleep(100);
+            }
         } catch (IOException e) {
             e.printStackTrace();
             throw new BizException("读取配置文件错误");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         return file.getOriginalFilename();
     }
 
     @Override
-    public void saveConfig(GameLinkDto gameLinkDto) {
-        PropertyDescriptor[] propertyDescriptors = BeanUtils.getPropertyDescriptors(gameLinkDto.getClass());
+    public void saveConfig(Object dto, String type) {
+        PropertyDescriptor[] propertyDescriptors = BeanUtils.getPropertyDescriptors(dto.getClass());
         List<Config> configList = new ArrayList<>();
         for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
             Config config = new Config();
             config.setConfigName(ConfigMap.getConfigMap().get(propertyDescriptor.getName()));
             config.setConfigKey(propertyDescriptor.getName());
             try {
-                Object property = propertyDescriptor.getReadMethod().invoke(gameLinkDto);
-                if (property instanceof java.lang.String)
+                Object property = propertyDescriptor.getReadMethod().invoke(dto);
+                if(property == null)
+                    continue;
+                if (property instanceof java.lang.String){
                     config.setConfigValue((String) property);
+                }
                 else
                     continue;
             } catch (IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
                 throw new BizException("读取配置项错误");
             }
-            config.setType("sidebar");
+            config.setType(type);
             configList.add(config);
         }
 
