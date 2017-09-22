@@ -54,11 +54,11 @@
             <!--<property name="useActualColumnNames" value="false"/>-->
         <!--</table>-->
 
-        <table schema="nekostory_web" tableName="s_article" domainObjectName="Article"
-               enableCountByExample="true" enableDeleteByExample="true"
-               enableSelectByExample="true" enableUpdateByExample="true">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
+        <!--<table schema="nekostory_web" tableName="s_article" domainObjectName="Article"-->
+               <!--enableCountByExample="true" enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true" enableUpdateByExample="true">-->
+            <!--<property name="useActualColumnNames" value="false"/>-->
+        <!--</table>-->
 
         <!--<table schema="nekostory_web" tableName="s_reserve" domainObjectName="Reserve"-->
                <!--enableCountByExample="true" enableDeleteByExample="true"-->
@@ -72,11 +72,11 @@
             <!--<property name="useActualColumnNames" value="false"/>-->
         <!--</table>-->
 
-        <!--<table schema="nekostory_web" tableName="s_imgs" domainObjectName="Imgs"-->
-               <!--enableCountByExample="true" enableDeleteByExample="true"-->
-               <!--enableSelectByExample="true" enableUpdateByExample="true">-->
-            <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--</table>-->
+        <table schema="nekostory_web" tableName="s_imgs" domainObjectName="Imgs"
+               enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
 
 
     </context>

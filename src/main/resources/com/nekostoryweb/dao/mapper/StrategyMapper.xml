@@ -5,7 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="writer" property="writer" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
     <result column="is_up_to_date" property="isUpToDate" jdbcType="TINYINT" />
     <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
     <result column="order_key" property="orderKey" jdbcType="INTEGER" />
@@ -130,11 +130,11 @@
   <insert id="insert" parameterType="com.nekostoryweb.dao.po.Strategy" >
     insert into s_strategy (id, title, writer, 
       type, is_up_to_date, img_url, 
-      order_key, add_time, update_time, 
+      order_key, add_time,
       content)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{writer,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{isUpToDate,jdbcType=TINYINT}, #{imgUrl,jdbcType=VARCHAR}, 
-      #{orderKey,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=INTEGER}, #{isUpToDate,jdbcType=TINYINT}, #{imgUrl,jdbcType=VARCHAR}, 
+      #{orderKey,jdbcType=INTEGER}, #{addTime}
       #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.nekostoryweb.dao.po.Strategy" >
@@ -182,7 +182,7 @@
         #{writer,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
-        #{type,jdbcType=VARCHAR},
+        #{type,jdbcType=INTEGER},
       </if>
       <if test="isUpToDate != null" >
         #{isUpToDate,jdbcType=TINYINT},
@@ -223,7 +223,7 @@
         writer = #{record.writer,jdbcType=VARCHAR},
       </if>
       <if test="record.type != null" >
-        type = #{record.type,jdbcType=VARCHAR},
+        type = #{record.type,jdbcType=INTEGER},
       </if>
       <if test="record.isUpToDate != null" >
         is_up_to_date = #{record.isUpToDate,jdbcType=TINYINT},
@@ -253,7 +253,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
       writer = #{record.writer,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
       is_up_to_date = #{record.isUpToDate,jdbcType=TINYINT},
       img_url = #{record.imgUrl,jdbcType=VARCHAR},
       order_key = #{record.orderKey,jdbcType=INTEGER},
@@ -269,7 +269,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
       writer = #{record.writer,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
       is_up_to_date = #{record.isUpToDate,jdbcType=TINYINT},
       img_url = #{record.imgUrl,jdbcType=VARCHAR},
       order_key = #{record.orderKey,jdbcType=INTEGER},
@@ -289,7 +289,7 @@
         writer = #{writer,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
-        type = #{type,jdbcType=VARCHAR},
+        type = #{type,jdbcType=INTEGER},
       </if>
       <if test="isUpToDate != null" >
         is_up_to_date = #{isUpToDate,jdbcType=TINYINT},
@@ -316,7 +316,7 @@
     update s_strategy
     set title = #{title,jdbcType=VARCHAR},
       writer = #{writer,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
       is_up_to_date = #{isUpToDate,jdbcType=TINYINT},
       img_url = #{imgUrl,jdbcType=VARCHAR},
       order_key = #{orderKey,jdbcType=INTEGER},
@@ -329,7 +329,7 @@
     update s_strategy
     set title = #{title,jdbcType=VARCHAR},
       writer = #{writer,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
       is_up_to_date = #{isUpToDate,jdbcType=TINYINT},
       img_url = #{imgUrl,jdbcType=VARCHAR},
       order_key = #{orderKey,jdbcType=INTEGER},

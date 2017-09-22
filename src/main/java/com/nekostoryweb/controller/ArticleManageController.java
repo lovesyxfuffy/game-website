@@ -1,6 +1,8 @@
 package com.nekostoryweb.controller;
 
 import com.nekostoryweb.dao.dto.ArticleDto;
+import com.nekostoryweb.dao.dto.ImgDto;
+import com.nekostoryweb.dao.dto.StrategyDto;
 import com.nekostoryweb.service.ArticleService;
 import com.nekostoryweb.service.MetaService;
 import com.nekostoryweb.utils.WebUtil;
@@ -48,6 +50,36 @@ public class ArticleManageController {
         String fileName = metaService.saveFile(imgFile);
         articleDto.setImgUrl(staticFilePath + fileName);
         articleService.saveArticle(articleDto);
+        return WebUtil.result("");
+    }
+
+    @RequestMapping(value = "uploadStrategy",method = RequestMethod.POST)
+    public ResponseEntity<Map<String,Object>> uploadStrategy(@RequestParam("imgFile") CommonsMultipartFile imgFile,
+                                                             @RequestParam("type") Integer[] typeCodes,
+                                                             StrategyDto strategyDto){
+        int type = 0;
+        for (int row : typeCodes) {
+            type += row;
+        }
+        strategyDto.setType(type);
+        String fileName = metaService.saveFile(imgFile);
+        strategyDto.setImgUrl(staticFilePath + fileName);
+        articleService.saveStrategy(strategyDto);
+        return WebUtil.result("");
+    }
+
+    @RequestMapping(value = "uploadImgs",method = RequestMethod.POST)
+    public ResponseEntity<Map<String,Object>> uploadImgs(@RequestParam("imgFile") CommonsMultipartFile imgFile,
+                                                         @RequestParam("type") Integer[] typeCodes,
+                                                         ImgDto imgDto){
+        int type = 0;
+        for (int row : typeCodes) {
+            type += row;
+        }
+        imgDto.setType(type);
+        String fileName = metaService.saveFile(imgFile);
+        imgDto.setImgUrl(staticFilePath + fileName);
+        articleService.saveImgs(imgDto);
         return WebUtil.result("");
     }
 }

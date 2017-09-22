@@ -1,10 +1,14 @@
-package com.nekostoryweb.dao.po;
+package com.nekostoryweb.dao.dto;
 
 import lombok.Data;
 
+import java.util.Date;
 
+/**
+ * Created by yujingyang on 2017/9/22.
+ */
 @Data
-public class Imgs {
+public class ImgDto {
     private Integer id;
 
     private String title;
@@ -21,10 +25,8 @@ public class Imgs {
 
     private String imgUrl;
 
-    private String videoUrl;
-
     private String addTime;
 
-    private String updateTime;
+    private String videoUrl;
 
 }
