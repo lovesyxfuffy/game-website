@@ -1,18 +1,21 @@
 package com.nekostoryweb.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.nekostoryweb.dao.dto.ArticleDto;
 import com.nekostoryweb.dao.dto.ImgDto;
+import com.nekostoryweb.dao.dto.Page;
 import com.nekostoryweb.dao.dto.StrategyDto;
 import com.nekostoryweb.dao.mapper.ArticleMapper;
 import com.nekostoryweb.dao.mapper.ImgsMapper;
 import com.nekostoryweb.dao.mapper.StrategyMapper;
-import com.nekostoryweb.dao.po.Article;
-import com.nekostoryweb.dao.po.Imgs;
-import com.nekostoryweb.dao.po.Strategy;
+import com.nekostoryweb.dao.po.*;
 import com.nekostoryweb.service.ArticleService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by yujingyang on 2017/9/21.
@@ -31,7 +34,24 @@ public class ArticleServiceImpl implements ArticleService {
     public void saveArticle(ArticleDto articleDto) {
         Article article = new Article();
         BeanUtils.copyProperties(articleDto, article);
+
         articleMapper.insert(article);
+    }
+
+    @Override
+    public void updateArticle(ArticleDto articleDto, Integer articleId){
+        Article article = new Article();
+        BeanUtils.copyProperties(articleDto, article);
+        article.setId(articleId);
+        articleMapper.updateByPrimaryKeySelective(article);
+    }
+
+    @Override
+    public void updateStrategy(StrategyDto strategyDto, Integer strategyId){
+        Strategy strategy = new Strategy();
+        BeanUtils.copyProperties(strategyDto, strategy);
+        strategy.setId(strategyId);
+        strategyMapper.updateByPrimaryKeySelective(strategy);
     }
 
     @Override
@@ -50,5 +70,32 @@ public class ArticleServiceImpl implements ArticleService {
             imgDto.setIsVideo((byte) 0);
         BeanUtils.copyProperties(imgDto, imgs);
         imgsMapper.insert(imgs);
+    }
+
+    @Override
+    public PageInfo<Article> getArticleList(Page page){
+        ArticleExample articleExample = new ArticleExample();
+        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(page.getPage(),page.getRows());
+        List<Article> result = articleMapper.selectByExample(articleExample);
+        return new PageInfo<>(result);
+    }
+
+    @Override
+    public PageInfo<Strategy> getStrategyList(Page page){
+        StrategyExample strategyExample = new StrategyExample();
+        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(page.getPage(),page.getRows());
+        List<Strategy> result = strategyMapper.selectByExample(strategyExample);
+        return new PageInfo<>(result);
+
+    }
+
+    @Override
+    public void deleteArticle(Integer articleId){
+        articleMapper.deleteByPrimaryKey(articleId);
+    }
+
+    @Override
+    public void deleteStrategy(Integer strategyId){
+        strategyMapper.deleteByPrimaryKey(strategyId);
     }
 }

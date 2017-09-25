@@ -13,6 +13,6 @@ public class StrategyDto {
     Integer type;
     Byte isUpToDate;
     String imgUrl;
-    String orderKey;
+    Integer orderKey;
     String addTime;
 }

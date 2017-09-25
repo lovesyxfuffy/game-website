@@ -115,11 +115,11 @@
     ,
     <include refid="Blob_Column_List" />
     from s_article
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from s_article
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id}
   </delete>
   <delete id="deleteByExample" parameterType="com.nekostoryweb.dao.po.ArticleExample" >
     delete from s_article
@@ -128,14 +128,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.nekostoryweb.dao.po.Article" >
-    insert into s_article (id, title, writer, 
-      type, is_up_to_date, img_url, 
-      order_key, add_time,
+    insert into s_article (title, writer,
+      `type`, is_up_to_date, img_url,
+      order_key, add_time,update_time
       content)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{writer,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER}, #{isUpToDate,jdbcType=TINYINT}, #{imgUrl,jdbcType=VARCHAR}, 
-      #{orderKey,jdbcType=INTEGER}, #{addTime},
-      #{content,jdbcType=LONGVARCHAR})
+    values (#{title}, #{writer},
+      #{type}, #{isUpToDate}, #{imgUrl},
+      #{orderKey}, #{addTime}, date_format(now(),'%Y-%m-%d'),
+      #{content})
   </insert>
   <insert id="insertSelective" parameterType="com.nekostoryweb.dao.po.Article" >
     insert into s_article
@@ -150,7 +150,7 @@
         writer,
       </if>
       <if test="type != null" >
-        type,
+        `type`,
       </if>
       <if test="isUpToDate != null" >
         is_up_to_date,
@@ -173,34 +173,34 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+        #{id},
       </if>
       <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
+        #{title},
       </if>
       <if test="writer != null" >
-        #{writer,jdbcType=VARCHAR},
+        #{writer},
       </if>
       <if test="type != null" >
-        #{type,jdbcType=INTEGER},
+        #{type},
       </if>
       <if test="isUpToDate != null" >
-        #{isUpToDate,jdbcType=TINYINT},
+        #{isUpToDate},
       </if>
       <if test="imgUrl != null" >
-        #{imgUrl,jdbcType=VARCHAR},
+        #{imgUrl},
       </if>
       <if test="orderKey != null" >
-        #{orderKey,jdbcType=INTEGER},
+        #{orderKey},
       </if>
       <if test="addTime != null" >
-        #{addTime,jdbcType=TIMESTAMP},
+        #{addTime},
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
+        #{updateTime},
       </if>
       <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
+        #{content},
       </if>
     </trim>
   </insert>
@@ -214,34 +214,34 @@
     update s_article
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
+        id = #{record.id},
       </if>
       <if test="record.title != null" >
-        title = #{record.title,jdbcType=VARCHAR},
+        title = #{record.title},
       </if>
       <if test="record.writer != null" >
-        writer = #{record.writer,jdbcType=VARCHAR},
+        writer = #{record.writer},
       </if>
       <if test="record.type != null" >
-        type = #{record.type,jdbcType=INTEGER},
+        type = #{record.type},
       </if>
       <if test="record.isUpToDate != null" >
-        is_up_to_date = #{record.isUpToDate,jdbcType=TINYINT},
+        is_up_to_date = #{record.isUpToDate},
       </if>
       <if test="record.imgUrl != null" >
-        img_url = #{record.imgUrl,jdbcType=VARCHAR},
+        img_url = #{record.imgUrl},
       </if>
       <if test="record.orderKey != null" >
-        order_key = #{record.orderKey,jdbcType=INTEGER},
+        order_key = #{record.orderKey},
       </if>
       <if test="record.addTime != null" >
-        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+        add_time = #{record.addTime},
       </if>
       <if test="record.updateTime != null" >
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+        update_time = #{record.updateTime},
       </if>
       <if test="record.content != null" >
-        content = #{record.content,jdbcType=LONGVARCHAR},
+        content = #{record.content},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -250,31 +250,31 @@
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update s_article
-    set id = #{record.id,jdbcType=INTEGER},
-      title = #{record.title,jdbcType=VARCHAR},
-      writer = #{record.writer,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=INTEGER},
-      is_up_to_date = #{record.isUpToDate,jdbcType=TINYINT},
-      img_url = #{record.imgUrl,jdbcType=VARCHAR},
-      order_key = #{record.orderKey,jdbcType=INTEGER},
-      add_time = #{record.addTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      content = #{record.content,jdbcType=LONGVARCHAR}
+    set id = #{record.id},
+      title = #{record.title},
+      writer = #{record.writer},
+      type = #{record.type},
+      is_up_to_date = #{record.isUpToDate},
+      img_url = #{record.imgUrl},
+      order_key = #{record.orderKey},
+      add_time = #{record.addTime},
+      update_time = #{record.updateTime},
+      content = #{record.content}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
     update s_article
-    set id = #{record.id,jdbcType=INTEGER},
-      title = #{record.title,jdbcType=VARCHAR},
-      writer = #{record.writer,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=INTEGER},
-      is_up_to_date = #{record.isUpToDate,jdbcType=TINYINT},
-      img_url = #{record.imgUrl,jdbcType=VARCHAR},
-      order_key = #{record.orderKey,jdbcType=INTEGER},
-      add_time = #{record.addTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    set id = #{record.id},
+      title = #{record.title},
+      writer = #{record.writer},
+      type = #{record.type},
+      is_up_to_date = #{record.isUpToDate},
+      img_url = #{record.imgUrl},
+      order_key = #{record.orderKey},
+      add_time = #{record.addTime},
+      update_time = #{record.updateTime}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -283,58 +283,56 @@
     update s_article
     <set >
       <if test="title != null" >
-        title = #{title,jdbcType=VARCHAR},
+        title = #{title},
       </if>
       <if test="writer != null" >
-        writer = #{writer,jdbcType=VARCHAR},
+        writer = #{writer},
       </if>
       <if test="type != null" >
-        type = #{type,jdbcType=INTEGER},
+        type = #{type},
       </if>
       <if test="isUpToDate != null" >
-        is_up_to_date = #{isUpToDate,jdbcType=TINYINT},
+        is_up_to_date = #{isUpToDate},
       </if>
       <if test="imgUrl != null" >
-        img_url = #{imgUrl,jdbcType=VARCHAR},
+        img_url = #{imgUrl},
       </if>
       <if test="orderKey != null" >
-        order_key = #{orderKey,jdbcType=INTEGER},
+        order_key = #{orderKey},
       </if>
       <if test="addTime != null" >
-        add_time = #{addTime,jdbcType=TIMESTAMP},
+        add_time = #{addTime},
       </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
+        update_time = date_format(now(),'%Y-%m-%d'),
       <if test="content != null" >
-        content = #{content,jdbcType=LONGVARCHAR},
+        content = #{content},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nekostoryweb.dao.po.Article" >
     update s_article
-    set title = #{title,jdbcType=VARCHAR},
-      writer = #{writer,jdbcType=VARCHAR},
-      type = #{type,jdbcType=INTEGER},
-      is_up_to_date = #{isUpToDate,jdbcType=TINYINT},
-      img_url = #{imgUrl,jdbcType=VARCHAR},
-      order_key = #{orderKey,jdbcType=INTEGER},
-      add_time = #{addTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      content = #{content,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    set title = #{title},
+      writer = #{writer},
+      type = #{type},
+      is_up_to_date = #{isUpToDate},
+      img_url = #{imgUrl},
+      order_key = #{orderKey},
+      add_time = #{addTime},
+      update_time = #{updateTime},
+      content = #{content}
+    where id = #{id}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.nekostoryweb.dao.po.Article" >
     update s_article
-    set title = #{title,jdbcType=VARCHAR},
-      writer = #{writer,jdbcType=VARCHAR},
-      type = #{type,jdbcType=INTEGER},
-      is_up_to_date = #{isUpToDate,jdbcType=TINYINT},
-      img_url = #{imgUrl,jdbcType=VARCHAR},
-      order_key = #{orderKey,jdbcType=INTEGER},
-      add_time = #{addTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
+    set title = #{title},
+      writer = #{writer},
+      type = #{type},
+      is_up_to_date = #{isUpToDate},
+      img_url = #{imgUrl},
+      order_key = #{orderKey},
+      add_time = #{addTime},
+      update_time = #{updateTime}
+    where id = #{id}
   </update>
 </mapper>

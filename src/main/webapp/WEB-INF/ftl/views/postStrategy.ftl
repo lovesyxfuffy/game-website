@@ -3,6 +3,8 @@
 </@override>
 
 <@override name="specificCSS">
+<!--suppress ALL -->
+
 <link rel="stylesheet" href="/assets/css/jquery-ui.custom.min.css"/>
 <link rel="stylesheet" href="/assets/css/chosen.min.css"/>
 <link rel="stylesheet" href="/assets/css/bootstrap-datepicker3.min.css"/>
@@ -26,126 +28,263 @@
 
 <@override name="contents">
 
-<form class="form-horizontal" role="form" id="uploadForm">
+    <#if strategy?exists>
+    <form class="form-horizontal" role="form" id="uploadForm">
+    <input type="hidden" value="${strategy.id}" name="strategyId">
 
-    <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">攻略标题</label>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">攻略标题</label>
 
-        <div class="col-sm-9">
-            <input type="text" id="title" name="title" placeholder="title"
-                   class="col-xs-10 col-sm-5"/>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">发布日期</label>
-
-        <div class="col-sm-9">
-            <div style="display: inline-block" class="input-group">
-                <input style="display: inline-block" name="addTime" class="date-picker" id="id-date-picker-1"
-                       type="text" data-date-format="yyyy-mm-dd"/>
-                <i class="fa fa-calendar bigger-110"></i>
+            <div class="col-sm-9">
+                <input type="text" id="title" name="title" value="${strategy.title}" placeholder="title"
+                       class="col-xs-10 col-sm-5"/>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">作者</label>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">发布日期</label>
 
-        <div class="col-sm-9">
-            <input type="text" id="writer" name="writer" placeholder="writer"
-                   class="input-small"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
-
-        <div class="col-sm-9">
-            <div class="control-group">
-                <label class="control-label bolder blue">分类</label>
-
-                <div class="checkbox">
-                    <label>
-                        <input name="type" value="1" type="checkbox" class="ace">
-                        <span class="lbl"> 新手</span>
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input name="type" value="2" type="checkbox" class="ace">
-                        <span class="lbl"> 进阶</span>
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input name="type" value="4" type="checkbox" class="ace">
-                        <span class="lbl"> 养成</span>
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input name="type" value="8" type="checkbox" class="ace">
-                        <span class="lbl"> 经验</span>
-                    </label>
+            <div class="col-sm-9">
+                <div style="display: inline-block" class="input-group">
+                    <input style="display: inline-block" name="addTime" value="${strategy.addTime}" class="date-picker" id="id-date-picker-1"
+                           type="text" data-date-format="yyyy-mm-dd"/>
+                    <i class="fa fa-calendar bigger-110"></i>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">最新</label>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">作者</label>
 
-        <div class="col-sm-9">
-            <input name="isUpToDate" id="upToDate" value="0" class="ace ace-switch ace-switch-5" type="checkbox">
-            <span class="lbl"></span>
+            <div class="col-sm-9">
+                <input type="text" id="writer" name="writer" value="${strategy.writer}"  placeholder="writer"
+                       class="input-small"/>
+            </div>
         </div>
-    </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
 
-    <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">排序</label>
+            <div class="col-sm-9">
+                <div class="control-group">
+                    <label class="control-label bolder blue">分类</label>
 
-        <div class="col-sm-9">
-            <input type="text" id="orderKey" name="orderKey" placeholder="orderKey"
-                   class="input-small"/>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="1" type="checkbox" class="ace">
+                            <span class="lbl"> 新手</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="2" type="checkbox" class="ace">
+                            <span class="lbl"> 进阶</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="4" type="checkbox" class="ace">
+                            <span class="lbl"> 养成</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="8" type="checkbox" class="ace">
+                            <span class="lbl"> 经验</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-sm-9">
-            <input multiple="" name="imgFile" type="file" id="id-input-file-3"/>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">最新</label>
+
+            <div class="col-sm-9">
+                <input name="isUpToDate" id="upToDate" value="${strategy.isUpToDate}"  class="ace ace-switch ace-switch-5" type="checkbox">
+                <span class="lbl"></span>
+            </div>
         </div>
-    </div>
-    <div class="hr hr-24"></div>
 
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">排序</label>
 
-    <div class="form-group">
-        <h4 class="header green clearfix">
-            攻略内容编辑
-        </h4>
-
-        <div class="wysiwyg-editor" id="editor1"></div>
-
-        <div class="hr hr-double dotted"></div>
-
-    </div>
-
-
-    <div class="clearfix form-actions">
-        <div class="col-md-offset-3 col-md-9">
-            <button id="submitButton" class="btn btn-info" type="button">
-                <i class="ace-icon fa fa-check bigger-110"></i>
-                提交
-            </button>
-
-            &nbsp; &nbsp; &nbsp;
-            <button class="btn" type="reset">
-                <i class="ace-icon fa fa-undo bigger-110"></i>
-                重置
-            </button>
+            <div class="col-sm-9">
+                <input type="text" id="orderKey" name="orderKey" value="${strategy.orderKey}"  placeholder="orderKey"
+                       class="input-small"/>
+            </div>
         </div>
-    </div>
 
-</form>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">封面图</label>
+
+            <div class="col-sm-9">
+                <img src="${strategy.imgUrl}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-9">
+                <input multiple="" name="imgFile"  type="file" id="id-input-file-3"/>
+            </div>
+        </div>
+        <div class="hr hr-24"></div>
+
+
+        <div class="form-group">
+            <h4 class="header green clearfix">
+                攻略内容编辑
+            </h4>
+
+            <div class="wysiwyg-editor" id="editor1">
+                ${strategy.content}
+
+            </div>
+
+            <div class="hr hr-double dotted"></div>
+
+        </div>
+
+
+        <div class="clearfix form-actions">
+            <div class="col-md-offset-3 col-md-9">
+                <button id="submitButton" class="btn btn-info" type="button">
+                    <i class="ace-icon fa fa-check bigger-110"></i>
+                    提交
+                </button>
+
+                &nbsp; &nbsp; &nbsp;
+                <button class="btn" type="reset">
+                    <i class="ace-icon fa fa-undo bigger-110"></i>
+                    重置
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+    <#else>
+    <form class="form-horizontal" role="form" id="uploadForm">
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">攻略标题</label>
+
+            <div class="col-sm-9">
+                <input type="text" id="title" name="title" placeholder="title"
+                       class="col-xs-10 col-sm-5"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">发布日期</label>
+
+            <div class="col-sm-9">
+                <div style="display: inline-block" class="input-group">
+                    <input style="display: inline-block" name="addTime" class="date-picker" id="id-date-picker-1"
+                           type="text" data-date-format="yyyy-mm-dd"/>
+                    <i class="fa fa-calendar bigger-110"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">作者</label>
+
+            <div class="col-sm-9">
+                <input type="text" id="writer" name="writer" placeholder="writer"
+                       class="input-small"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+
+            <div class="col-sm-9">
+                <div class="control-group">
+                    <label class="control-label bolder blue">分类</label>
+
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="1" type="checkbox" class="ace">
+                            <span class="lbl"> 新手</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="2" type="checkbox" class="ace">
+                            <span class="lbl"> 进阶</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="4" type="checkbox" class="ace">
+                            <span class="lbl"> 养成</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="8" type="checkbox" class="ace">
+                            <span class="lbl"> 经验</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">最新</label>
+
+            <div class="col-sm-9">
+                <input name="isUpToDate" id="upToDate" value="0" class="ace ace-switch ace-switch-5" type="checkbox">
+                <span class="lbl"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">排序</label>
+
+            <div class="col-sm-9">
+                <input type="text" id="orderKey" name="orderKey" placeholder="orderKey"
+                       class="input-small"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-9">
+                <input multiple="" name="imgFile" type="file" id="id-input-file-3"/>
+            </div>
+        </div>
+        <div class="hr hr-24"></div>
+
+
+        <div class="form-group">
+            <h4 class="header green clearfix">
+                攻略内容编辑
+            </h4>
+
+            <div class="wysiwyg-editor" id="editor1"></div>
+
+            <div class="hr hr-double dotted"></div>
+
+        </div>
+
+
+        <div class="clearfix form-actions">
+            <div class="col-md-offset-3 col-md-9">
+                <button id="submitButton" class="btn btn-info" type="button">
+                    <i class="ace-icon fa fa-check bigger-110"></i>
+                    提交
+                </button>
+
+                &nbsp; &nbsp; &nbsp;
+                <button class="btn" type="reset">
+                    <i class="ace-icon fa fa-undo bigger-110"></i>
+                    重置
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+    </#if>
 
 
 
@@ -846,6 +985,9 @@
             success: function (data) {
                 if (data.status == 1) {
                     alert("上传成功")
+                    <#if strategy?exists>
+                        window.location.href = '/api/views/strategyList'
+                    </#if>
                     $("#uploadForm")[0].reset()
                     $("#editor1").html("")
                 }
@@ -854,7 +996,11 @@
             },
             type: "post",
             data: form,
-            url: "/api/article/uploadStrategy",
+            <#if strategy?exists>
+                url: "/api/article/updateStrategy",
+            <#else >
+                url: "/api/article/uploadStrategy",
+            </#if>
             processData: false,
             contentType: false,
             error: function (e) {

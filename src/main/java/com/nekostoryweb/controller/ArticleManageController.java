@@ -2,19 +2,23 @@ package com.nekostoryweb.controller;
 
 import com.nekostoryweb.dao.dto.ArticleDto;
 import com.nekostoryweb.dao.dto.ImgDto;
+import com.nekostoryweb.dao.dto.Page;
 import com.nekostoryweb.dao.dto.StrategyDto;
+import com.nekostoryweb.dao.mapper.ArticleMapper;
+import com.nekostoryweb.dao.mapper.StrategyMapper;
+import com.nekostoryweb.dao.po.Article;
+import com.nekostoryweb.dao.po.Strategy;
 import com.nekostoryweb.service.ArticleService;
 import com.nekostoryweb.service.MetaService;
 import com.nekostoryweb.utils.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -28,6 +32,10 @@ public class ArticleManageController {
     MetaService metaService;
     @Autowired
     ArticleService articleService;
+    @Autowired
+    ArticleMapper articleMapper;
+    @Autowired
+    StrategyMapper strategyMapper;
 
     private final static String staticFilePath = "/static/";
 
@@ -50,6 +58,18 @@ public class ArticleManageController {
         String fileName = metaService.saveFile(imgFile);
         articleDto.setImgUrl(staticFilePath + fileName);
         articleService.saveArticle(articleDto);
+        return WebUtil.result("");
+    }
+
+    @RequestMapping(value = "updateArticle",method = RequestMethod.POST)
+    public ResponseEntity<Map<String,Object>> updateArticle(ArticleDto articleDto, @RequestParam("articleId")Integer articleId){
+        articleService.updateArticle(articleDto,articleId);
+        return WebUtil.result("");
+    }
+
+    @RequestMapping(value = "updateStrategy",method = RequestMethod.POST)
+    public ResponseEntity<Map<String,Object>> updateStrategy(StrategyDto strategy, @RequestParam("strategyId")Integer strategyId){
+        articleService.updateStrategy(strategy,strategyId);
         return WebUtil.result("");
     }
 
@@ -82,4 +102,57 @@ public class ArticleManageController {
         articleService.saveImgs(imgDto);
         return WebUtil.result("");
     }
+
+    @RequestMapping(value = "getArticleList",method = RequestMethod.GET)
+    public ResponseEntity<Map<String,Object>> getArticleList(Page page){
+        return WebUtil.result(articleService.getArticleList(page));
+    }
+
+    @RequestMapping(value = "getStrategyList",method = RequestMethod.GET)
+    public ResponseEntity<Map<String,Object>> getStrategyList(Page page){
+        return WebUtil.result(articleService.getStrategyList(page));
+    }
+
+    @RequestMapping(value = "editArticle",method = RequestMethod.POST)
+    public ResponseEntity<Map<String,Object>> editArticle(@RequestParam("oper") String oper,@RequestParam("id") String ids){
+        String[] idListStr = ids.split(",");
+        for(String idStr :idListStr){
+            if("del".equals(oper))
+                articleService.deleteArticle(Integer.parseInt(idStr));
+        }
+
+        return WebUtil.result("");
+    }
+
+    @RequestMapping(value = "editStrategy",method = RequestMethod.POST)
+    public ResponseEntity<Map<String,Object>> editStrategy(@RequestParam("oper") String oper,@RequestParam("id") String ids){
+        String[] idListStr = ids.split(",");
+        for(String idStr :idListStr){
+            if("del".equals(oper))
+                articleService.deleteStrategy(Integer.parseInt(idStr));
+        }
+
+        return WebUtil.result("");
+    }
+
+
+    @RequestMapping(value = "updateArticle/{articleId}",method = RequestMethod.GET)
+    public String updateArticle(@PathVariable("articleId") Integer articleId, Model model, HttpServletRequest request){
+        Article article = articleMapper.selectByPrimaryKey(articleId);
+        model.addAttribute("requestURI","");
+        model.addAttribute("article",article);
+
+        return "views/postArticle.ftl";
+    }
+
+    @RequestMapping(value = "updateStrategy/{strategyId}",method = RequestMethod.GET)
+    public String updateStrategy( Model model, HttpServletRequest request, @PathVariable("strategyId") Integer strategyId){
+        Strategy strategy = strategyMapper.selectByPrimaryKey(strategyId);
+        model.addAttribute("requestURI","");
+        model.addAttribute("strategy",strategy);
+
+        return "views/postStrategy.ftl";
+    }
+
+
 }

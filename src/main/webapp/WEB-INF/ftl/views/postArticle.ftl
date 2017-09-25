@@ -26,133 +26,280 @@
 
 <@override name="contents">
 
-<form class="form-horizontal" role="form" id="uploadForm">
+    <#if article?exists>
+    <form class="form-horizontal" role="form" id="uploadForm">
+        <input type="hidden" value="${article.id}" name="articleId">
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">文章标题</label>
 
-    <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">文章标题</label>
-
-        <div class="col-sm-9">
-            <input type="text" id="title" name="title" placeholder="title"
-                   class="col-xs-10 col-sm-5"/>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">发布日期</label>
-
-        <div class="col-sm-9">
-            <div style="display: inline-block" class="input-group">
-                <input style="display: inline-block" name="addTime" class="date-picker" id="id-date-picker-1"
-                       type="text" data-date-format="yyyy-mm-dd"/>
-                <i class="fa fa-calendar bigger-110"></i>
+            <div class="col-sm-9">
+                <input type="text" id="title" name="title" value="${article.title}" placeholder="title"
+                       class="col-xs-10 col-sm-5"/>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">作者</label>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">发布日期</label>
 
-        <div class="col-sm-9">
-            <input type="text" id="writer" name="writer" placeholder="writer"
-                   class="input-small"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
-
-        <div class="col-sm-9">
-            <div class="control-group">
-                <label class="control-label bolder blue">分类</label>
-
-                <div class="checkbox">
-                    <label>
-                        <input name="type" value="1" type="checkbox" class="ace">
-                        <span class="lbl"> 新闻</span>
-                    </label>
+            <div class="col-sm-9">
+                <div style="display: inline-block" class="input-group">
+                    <input style="display: inline-block" name="addTime" value="${article.addTime}" class="date-picker"
+                           id="id-date-picker-1"
+                           type="text" data-date-format="yyyy-mm-dd"/>
+                    <i class="fa fa-calendar bigger-110"></i>
                 </div>
-                <div class="checkbox">
-                    <label>
-                        <input name="type" value="2" type="checkbox" class="ace">
-                        <span class="lbl"> 公告</span>
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input name="type" value="4" type="checkbox" class="ace">
-                        <span class="lbl"> 线上活动</span>
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input name="type" value="8" type="checkbox" class="ace">
-                        <span class="lbl"> 线下活动</span>
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input name="type" value="16" type="checkbox" class="ace">
-                        <span class="lbl"> 隐藏分类</span>
-                    </label>
-                </div>
-
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">最新</label>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">作者</label>
 
-        <div class="col-sm-9">
-            <input name="isUpToDate" id="upToDate" value="0" class="ace ace-switch ace-switch-5" type="checkbox">
-            <span class="lbl"></span>
+            <div class="col-sm-9">
+                <input type="text" id="writer" name="writer" value="${article.writer}" placeholder="writer"
+                       class="input-small"/>
+            </div>
         </div>
-    </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
 
-    <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">排序</label>
+            <div class="col-sm-9">
+                <div class="control-group">
+                    <label class="control-label bolder blue">分类</label>
 
-        <div class="col-sm-9">
-            <input type="text" id="orderKey" name="orderKey" placeholder="orderKey"
-                   class="input-small"/>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="1" type="checkbox" class="ace">
+                            <span class="lbl"> 新闻</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="2" type="checkbox" class="ace">
+                            <span class="lbl"> 公告</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="4" type="checkbox" class="ace">
+                            <span class="lbl"> 线上活动</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="8" type="checkbox" class="ace">
+                            <span class="lbl"> 线下活动</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="16" type="checkbox" class="ace">
+                            <span class="lbl"> 隐藏分类</span>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-sm-9">
-            <input multiple="" name="imgFile" type="file" id="id-input-file-3"/>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">最新</label>
+
+            <div class="col-sm-9">
+                <input name="isUpToDate" id="upToDate"
+                       value="${article.isUpToDate}"
+                       class="ace ace-switch ace-switch-5" type="checkbox">
+                <span class="lbl"></span>
+            </div>
         </div>
-    </div>
-    <div class="hr hr-24"></div>
 
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">排序</label>
 
-    <div class="form-group">
-        <h4 class="header green clearfix">
-            文章内容编辑
-        </h4>
-
-        <div class="wysiwyg-editor" id="editor1"></div>
-
-        <div class="hr hr-double dotted"></div>
-
-    </div>
-
-
-    <div class="clearfix form-actions">
-        <div class="col-md-offset-3 col-md-9">
-            <button id="submitButton" class="btn btn-info" type="button">
-                <i class="ace-icon fa fa-check bigger-110"></i>
-                提交
-            </button>
-
-            &nbsp; &nbsp; &nbsp;
-            <button class="btn" type="reset">
-                <i class="ace-icon fa fa-undo bigger-110"></i>
-                重置
-            </button>
+            <div class="col-sm-9">
+                <input type="text" id="orderKey" name="orderKey" value="${article.orderKey}" placeholder="orderKey"
+                       class="input-small"/>
+            </div>
         </div>
-    </div>
 
-</form>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">封面图</label>
+
+            <div class="col-sm-9">
+                <img src="${article.imgUrl}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-9">
+                <input multiple="" name="imgFile" type="file" id="id-input-file-3"/>
+            </div>
+        </div>
+        <div class="hr hr-24"></div>
+
+
+        <div class="form-group">
+            <h4 class="header green clearfix">
+                文章内容编辑
+            </h4>
+
+            <div class="wysiwyg-editor" id="editor1">
+            ${article.content}
+
+            </div>
+
+            <div class="hr hr-double dotted"></div>
+
+        </div>
+
+
+        <div class="clearfix form-actions">
+            <div class="col-md-offset-3 col-md-9">
+                <button id="submitButton" class="btn btn-info" type="button">
+                    <i class="ace-icon fa fa-check bigger-110"></i>
+                    提交
+                </button>
+
+                &nbsp; &nbsp; &nbsp;
+                <button class="btn" type="reset">
+                    <i class="ace-icon fa fa-undo bigger-110"></i>
+                    重置
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+    <#else >
+    <form class="form-horizontal" role="form" id="uploadForm">
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">文章标题</label>
+
+            <div class="col-sm-9">
+                <input type="text" id="title" name="title" placeholder="title"
+                       class="col-xs-10 col-sm-5"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">发布日期</label>
+
+            <div class="col-sm-9">
+                <div style="display: inline-block" class="input-group">
+                    <input style="display: inline-block" name="addTime" class="date-picker" id="id-date-picker-1"
+                           type="text" data-date-format="yyyy-mm-dd"/>
+                    <i class="fa fa-calendar bigger-110"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">作者</label>
+
+            <div class="col-sm-9">
+                <input type="text" id="writer" name="writer" placeholder="writer"
+                       class="input-small"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+
+            <div class="col-sm-9">
+                <div class="control-group">
+                    <label class="control-label bolder blue">分类</label>
+
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="1" type="checkbox" class="ace">
+                            <span class="lbl"> 新闻</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="2" type="checkbox" class="ace">
+                            <span class="lbl"> 公告</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="4" type="checkbox" class="ace">
+                            <span class="lbl"> 线上活动</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="8" type="checkbox" class="ace">
+                            <span class="lbl"> 线下活动</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input name="type" value="16" type="checkbox" class="ace">
+                            <span class="lbl"> 隐藏分类</span>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">最新</label>
+
+            <div class="col-sm-9">
+                <input name="isUpToDate" id="upToDate" value="0" class="ace ace-switch ace-switch-5" type="checkbox">
+                <span class="lbl"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">排序</label>
+
+            <div class="col-sm-9">
+                <input type="text" id="orderKey" name="orderKey" placeholder="orderKey"
+                       class="input-small"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-9">
+                <input multiple="" name="imgFile" type="file" id="id-input-file-3"/>
+            </div>
+        </div>
+        <div class="hr hr-24"></div>
+
+
+        <div class="form-group">
+            <h4 class="header green clearfix">
+                文章内容编辑
+            </h4>
+
+            <div class="wysiwyg-editor" id="editor1"></div>
+
+            <div class="hr hr-double dotted"></div>
+
+        </div>
+
+
+        <div class="clearfix form-actions">
+            <div class="col-md-offset-3 col-md-9">
+                <button id="submitButton" class="btn btn-info" type="button">
+                    <i class="ace-icon fa fa-check bigger-110"></i>
+                    提交
+                </button>
+
+                &nbsp; &nbsp; &nbsp;
+                <button class="btn" type="reset">
+                    <i class="ace-icon fa fa-undo bigger-110"></i>
+                    重置
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+    </#if>
+
 
 
 
@@ -853,6 +1000,9 @@
             success: function (data) {
                 if (data.status == 1) {
                     alert("上传成功")
+                    <#if article?exists>
+                        window.location.href = '/api/views/articleList'
+                    </#if>
                     $("#uploadForm")[0].reset()
                     $("#editor1").html("")
                 }
@@ -861,7 +1011,13 @@
             },
             type: "post",
             data: form,
-            url: "/api/article/uploadArticle",
+            <#if article?exists>
+                url: "/api/article/updateArticle",
+
+            <#else >
+                url: "/api/article/uploadArticle",
+
+            </#if>
             processData: false,
             contentType: false,
             error: function (e) {
