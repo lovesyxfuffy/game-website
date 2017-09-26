@@ -1,4 +1,4 @@
-package com.nekostoryweb.service;
+package com.nekostoryweb.service.manage;
 
 import com.nekostoryweb.dao.dto.GameLinkDto;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;

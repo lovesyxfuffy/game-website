@@ -1,4 +1,4 @@
-package com.nekostoryweb.controller;
+package com.nekostoryweb.controller.manage;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

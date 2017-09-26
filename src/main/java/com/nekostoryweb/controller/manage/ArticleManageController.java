@@ -1,4 +1,4 @@
-package com.nekostoryweb.controller;
+package com.nekostoryweb.controller.manage;
 
 import com.nekostoryweb.dao.dto.ArticleDto;
 import com.nekostoryweb.dao.dto.ImgDto;
@@ -10,8 +10,8 @@ import com.nekostoryweb.dao.mapper.StrategyMapper;
 import com.nekostoryweb.dao.po.Article;
 import com.nekostoryweb.dao.po.Imgs;
 import com.nekostoryweb.dao.po.Strategy;
-import com.nekostoryweb.service.ArticleService;
-import com.nekostoryweb.service.MetaService;
+import com.nekostoryweb.service.manage.ArticleService;
+import com.nekostoryweb.service.manage.MetaService;
 import com.nekostoryweb.utils.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

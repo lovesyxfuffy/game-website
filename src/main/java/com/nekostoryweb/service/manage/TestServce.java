@@ -1,4 +1,4 @@
-package com.nekostoryweb.service;
+package com.nekostoryweb.service.manage;
 
 /**
  * Created by yujingyang on 2017/8/31.

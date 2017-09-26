@@ -1,6 +1,6 @@
-package com.nekostoryweb.controller;
+package com.nekostoryweb.controller.manage;
 
-import com.nekostoryweb.service.SystemService;
+import com.nekostoryweb.service.manage.SystemService;
 import com.nekostoryweb.utils.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.net.HttpCookie;
-import java.util.HashMap;
 import java.util.Map;
 
 /**

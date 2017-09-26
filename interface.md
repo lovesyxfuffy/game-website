@@ -135,7 +135,7 @@ response:
 }
 ```
 
-#### 6.新闻资讯-获取内容列表
+#### 6.新闻资讯-获取内容列表(update 17-09-26 添加page)
 url:/front/news/getContentList
 
 method:post
@@ -160,7 +160,12 @@ response:
         "subContent":"这是被剪剩下的一部分内容xxxx",
         "dateTime":"2017-07-19 10:38:04" //格式 2017-07-26 12:38:04
       },{},{}
-    ]
+    ],
+    "page":{
+            "pageNo":1,
+            "pageSize":12,
+            "total":5
+    }
   },
   "status":1
 }
@@ -248,7 +253,7 @@ response:
 }
 ```
 
-#### 10.活动专区-获取某活动详情
+#### 10.活动专区-获取某活动详情(update 17-09-26 此处图片点开应为文章 不需要imgUrl)
 url:/front/activity/getActivityDetail/{activityId}
 
 method:post
@@ -263,7 +268,6 @@ response:
     "title":"这是标题",
     "writer":"这是作者",
     "dataTime":"2017-07-19 10:38:04",
-    "imgUrl":"http://xxxxxxxxxx",//点开后大图的地址
     "content":"非常长的内容 包括\n\r换行符以及各种空格  甚至插入图片 建议使用TextArea"
   },
   "status":1

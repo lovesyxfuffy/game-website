@@ -79,6 +79,12 @@
   <sql id="Blob_Column_List" >
     content
   </sql>
+  <select id="selectByStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT
+    <include refid="Base_Column_List" />
+    from s_article
+    where status &amp; #{status} = 1
+  </select>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nekostoryweb.dao.po.ArticleExample" >
     select
     <if test="distinct" >
@@ -137,6 +143,7 @@
       #{orderKey}, #{addTime}, date_format(now(),'%Y-%m-%d'),
       #{content})
   </insert>
+
   <insert id="insertSelective" parameterType="com.nekostoryweb.dao.po.Article" >
     insert into s_article
     <trim prefix="(" suffix=")" suffixOverrides="," >

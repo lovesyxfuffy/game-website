@@ -1,4 +1,4 @@
-package com.nekostoryweb.service.impl;
+package com.nekostoryweb.service.manage.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -10,7 +10,7 @@ import com.nekostoryweb.dao.mapper.ArticleMapper;
 import com.nekostoryweb.dao.mapper.ImgsMapper;
 import com.nekostoryweb.dao.mapper.StrategyMapper;
 import com.nekostoryweb.dao.po.*;
-import com.nekostoryweb.service.ArticleService;
+import com.nekostoryweb.service.manage.ArticleService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

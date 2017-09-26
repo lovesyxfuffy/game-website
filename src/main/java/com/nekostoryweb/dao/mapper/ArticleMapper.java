@@ -35,4 +35,6 @@ public interface ArticleMapper {
     int updateByPrimaryKeyWithBLOBs(Article record);
 
     int updateByPrimaryKey(Article record);
+
+    List<Article> selectByStatus(Integer status);
 }

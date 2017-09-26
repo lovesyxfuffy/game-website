@@ -1,4 +1,4 @@
-package com.nekostoryweb.service;
+package com.nekostoryweb.service.manage;
 
 import java.util.Map;
 

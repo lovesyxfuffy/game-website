@@ -1,4 +1,4 @@
-package com.nekostoryweb.service.impl;
+package com.nekostoryweb.service.manage.impl;
 
 import com.nekostoryweb.dao.dto.BreadCrumbDto;
 import com.nekostoryweb.dao.dto.MenuDto;
@@ -8,7 +8,7 @@ import com.nekostoryweb.dao.po.Account;
 import com.nekostoryweb.dao.po.AccountExample;
 import com.nekostoryweb.dao.po.Menu;
 import com.nekostoryweb.dao.po.MenuExample;
-import com.nekostoryweb.service.SystemService;
+import com.nekostoryweb.service.manage.SystemService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

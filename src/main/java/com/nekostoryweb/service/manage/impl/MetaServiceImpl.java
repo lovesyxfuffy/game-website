@@ -1,11 +1,10 @@
-package com.nekostoryweb.service.impl;
+package com.nekostoryweb.service.manage.impl;
 
 import com.nekostoryweb.Contants.ConfigMap;
 import com.nekostoryweb.Exception.BizException;
-import com.nekostoryweb.dao.dto.GameLinkDto;
 import com.nekostoryweb.dao.mapper.ConfigMapper;
 import com.nekostoryweb.dao.po.Config;
-import com.nekostoryweb.service.MetaService;
+import com.nekostoryweb.service.manage.MetaService;
 import lombok.Cleanup;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

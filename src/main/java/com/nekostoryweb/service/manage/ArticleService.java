@@ -1,4 +1,4 @@
-package com.nekostoryweb.service;
+package com.nekostoryweb.service.manage;
 
 import com.github.pagehelper.PageInfo;
 import com.nekostoryweb.dao.dto.ArticleDto;
