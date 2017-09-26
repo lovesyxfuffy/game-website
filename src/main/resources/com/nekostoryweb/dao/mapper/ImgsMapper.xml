@@ -285,9 +285,7 @@
             <if test="addTime != null">
                 add_time = #{addTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
+                update_time = now()
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>

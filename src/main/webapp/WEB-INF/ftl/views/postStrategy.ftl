@@ -30,7 +30,7 @@
 
     <#if strategy?exists>
     <form class="form-horizontal" role="form" id="uploadForm">
-    <input type="hidden" value="${strategy.id}" name="strategyId">
+        <input type="hidden" value="${strategy.id}" name="strategyId">
 
         <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right" for="form-field-1">攻略标题</label>
@@ -46,7 +46,8 @@
 
             <div class="col-sm-9">
                 <div style="display: inline-block" class="input-group">
-                    <input style="display: inline-block" name="addTime" value="${strategy.addTime}" class="date-picker" id="id-date-picker-1"
+                    <input style="display: inline-block" name="addTime" value="${strategy.addTime}" class="date-picker"
+                           id="id-date-picker-1"
                            type="text" data-date-format="yyyy-mm-dd"/>
                     <i class="fa fa-calendar bigger-110"></i>
                 </div>
@@ -57,7 +58,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="form-field-1">作者</label>
 
             <div class="col-sm-9">
-                <input type="text" id="writer" name="writer" value="${strategy.writer}"  placeholder="writer"
+                <input type="text" id="writer" name="writer" value="${strategy.writer}" placeholder="writer"
                        class="input-small"/>
             </div>
         </div>
@@ -100,7 +101,11 @@
             <label class="col-sm-3 control-label no-padding-right" for="form-field-1">最新</label>
 
             <div class="col-sm-9">
-                <input name="isUpToDate" id="upToDate" value="${strategy.isUpToDate}"  class="ace ace-switch ace-switch-5" type="checkbox">
+                <input name="isUpToDate" id="upToDate" value="${strategy.isUpToDate}"
+                    <#if strategy.isUpToDate ==1>
+                        checked="checked"
+                    </#if>
+                       class="ace ace-switch ace-switch-5" type="checkbox">
                 <span class="lbl"></span>
             </div>
         </div>
@@ -109,7 +114,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="form-field-1">排序</label>
 
             <div class="col-sm-9">
-                <input type="text" id="orderKey" name="orderKey" value="${strategy.orderKey}"  placeholder="orderKey"
+                <input type="text" id="orderKey" name="orderKey" value="${strategy.orderKey}" placeholder="orderKey"
                        class="input-small"/>
             </div>
         </div>
@@ -124,7 +129,7 @@
 
         <div class="form-group">
             <div class="col-sm-9">
-                <input multiple="" name="imgFile"  type="file" id="id-input-file-3"/>
+                <input multiple="" name="imgFile" type="file" id="id-input-file-3"/>
             </div>
         </div>
         <div class="hr hr-24"></div>
@@ -136,7 +141,7 @@
             </h4>
 
             <div class="wysiwyg-editor" id="editor1">
-                ${strategy.content}
+            ${strategy.content}
 
             </div>
 

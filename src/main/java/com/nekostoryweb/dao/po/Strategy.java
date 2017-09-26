@@ -14,7 +14,7 @@ public class Strategy {
 
     private Integer type;
 
-    private Byte isUpToDate;
+    private byte isUpToDate;
 
     private String imgUrl;
 

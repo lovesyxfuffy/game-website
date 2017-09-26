@@ -5,8 +5,10 @@ import com.nekostoryweb.dao.dto.ImgDto;
 import com.nekostoryweb.dao.dto.Page;
 import com.nekostoryweb.dao.dto.StrategyDto;
 import com.nekostoryweb.dao.mapper.ArticleMapper;
+import com.nekostoryweb.dao.mapper.ImgsMapper;
 import com.nekostoryweb.dao.mapper.StrategyMapper;
 import com.nekostoryweb.dao.po.Article;
+import com.nekostoryweb.dao.po.Imgs;
 import com.nekostoryweb.dao.po.Strategy;
 import com.nekostoryweb.service.ArticleService;
 import com.nekostoryweb.service.MetaService;
@@ -36,6 +38,8 @@ public class ArticleManageController {
     ArticleMapper articleMapper;
     @Autowired
     StrategyMapper strategyMapper;
+    @Autowired
+    ImgsMapper imgsMapper;
 
     private final static String staticFilePath = "/static/";
 
@@ -49,7 +53,8 @@ public class ArticleManageController {
     @RequestMapping(value = "uploadArticle", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> uploadArticle(@RequestParam("imgFile") CommonsMultipartFile imgFile,
                                                              @RequestParam("type") Integer[] typeCodes,
-                                                             ArticleDto articleDto) {
+                                                             ArticleDto articleDto,HttpServletRequest request) {
+
         int type = 0;
         for (int row : typeCodes) {
             type += row;
@@ -70,6 +75,12 @@ public class ArticleManageController {
     @RequestMapping(value = "updateStrategy",method = RequestMethod.POST)
     public ResponseEntity<Map<String,Object>> updateStrategy(StrategyDto strategy, @RequestParam("strategyId")Integer strategyId){
         articleService.updateStrategy(strategy,strategyId);
+        return WebUtil.result("");
+    }
+
+    @RequestMapping(value = "updateImgs",method = RequestMethod.POST)
+    public ResponseEntity<Map<String,Object>> updateImgs(ImgDto imgDto,@RequestParam("imgId")Integer imgId){
+        articleService.updateImg(imgDto,imgId);
         return WebUtil.result("");
     }
 
@@ -101,6 +112,11 @@ public class ArticleManageController {
         imgDto.setImgUrl(staticFilePath + fileName);
         articleService.saveImgs(imgDto);
         return WebUtil.result("");
+    }
+
+    @RequestMapping(value = "getImgsList",method = RequestMethod.GET)
+    public ResponseEntity<Map<String,Object>> getImgsList(Page page){
+        return WebUtil.result(articleService.getImgsList(page));
     }
 
     @RequestMapping(value = "getArticleList",method = RequestMethod.GET)
@@ -135,6 +151,16 @@ public class ArticleManageController {
         return WebUtil.result("");
     }
 
+    @RequestMapping(value = "editImgs",method = RequestMethod.POST)
+    public ResponseEntity<Map<String,Object>> editImgs(@RequestParam("oper") String oper,@RequestParam("id") String ids){
+        String[] idListStr = ids.split(",");
+        for(String idStr :idListStr){
+            if("del".equals(oper))
+                articleService.deleteImgs(Integer.parseInt(idStr));
+        }
+        return WebUtil.result("");
+    }
+
 
     @RequestMapping(value = "updateArticle/{articleId}",method = RequestMethod.GET)
     public String updateArticle(@PathVariable("articleId") Integer articleId, Model model, HttpServletRequest request){
@@ -154,5 +180,13 @@ public class ArticleManageController {
         return "views/postStrategy.ftl";
     }
 
+    @RequestMapping(value = "updateImgs/{imgsId}",method = RequestMethod.GET)
+    public String updateImgs(Model model, HttpServletRequest request, @PathVariable("imgsId") Integer imgsId){
+        Imgs imgs= imgsMapper.selectByPrimaryKey(imgsId);
+        model.addAttribute("requestURI","");
+        model.addAttribute("imgs",imgs);
+
+        return "views/postImgs.ftl";
+    }
 
 }

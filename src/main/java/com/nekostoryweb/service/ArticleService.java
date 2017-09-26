@@ -6,6 +6,7 @@ import com.nekostoryweb.dao.dto.ImgDto;
 import com.nekostoryweb.dao.dto.Page;
 import com.nekostoryweb.dao.dto.StrategyDto;
 import com.nekostoryweb.dao.po.Article;
+import com.nekostoryweb.dao.po.Imgs;
 import com.nekostoryweb.dao.po.Strategy;
 
 /**
@@ -18,9 +19,13 @@ public interface ArticleService {
 
     void updateStrategy(StrategyDto strategyDto, Integer strategyId);
 
+    void updateImg(ImgDto imgDto, Integer imgId);
+
     void saveStrategy(StrategyDto strategyDto);
 
     void saveImgs(ImgDto imgDto);
+
+    PageInfo<Imgs> getImgsList(Page page);
 
     PageInfo<Article> getArticleList(Page page);
 
@@ -29,4 +34,6 @@ public interface ArticleService {
     void deleteArticle(Integer articleId);
 
     void deleteStrategy(Integer strategyId);
+
+    void deleteImgs(Integer imgId);
 }

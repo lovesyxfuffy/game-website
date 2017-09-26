@@ -11,7 +11,7 @@ public class StrategyDto {
     String content;
     String writer;
     Integer type;
-    Byte isUpToDate;
+    byte isUpToDate;
     String imgUrl;
     Integer orderKey;
     String addTime;

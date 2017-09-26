@@ -130,7 +130,7 @@
   <insert id="insert" parameterType="com.nekostoryweb.dao.po.Article" >
     insert into s_article (title, writer,
       `type`, is_up_to_date, img_url,
-      order_key, add_time,update_time
+      order_key, add_time,update_time,
       content)
     values (#{title}, #{writer},
       #{type}, #{isUpToDate}, #{imgUrl},

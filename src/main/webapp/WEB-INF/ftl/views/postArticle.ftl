@@ -107,6 +107,9 @@
             <div class="col-sm-9">
                 <input name="isUpToDate" id="upToDate"
                        value="${article.isUpToDate}"
+                       <#if article.isUpToDate == 1>
+                            checked="checked"
+                       </#if>
                        class="ace ace-switch ace-switch-5" type="checkbox">
                 <span class="lbl"></span>
             </div>
@@ -247,7 +250,8 @@
             <label class="col-sm-3 control-label no-padding-right" for="form-field-1">最新</label>
 
             <div class="col-sm-9">
-                <input name="isUpToDate" id="upToDate" value="0" class="ace ace-switch ace-switch-5" type="checkbox">
+                <input name="isUpToDate" id="upToDate" value="0"  class="ace ace-switch ace-switch-5" type="checkbox">
+
                 <span class="lbl"></span>
             </div>
         </div>

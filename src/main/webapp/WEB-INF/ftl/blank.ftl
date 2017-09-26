@@ -222,5 +222,18 @@
         })
     })
 </script>
+<script>
+    function logout() {
+        $.ajax({
+            type: "post",
+            url: "/api/system/logout",
+            data: {},
+            success: function () {
+                alert("登出成功")
+                window.location.href = "/api/views/login"
+            }
+        })
+    }
+</script>
 </body>
 </html>

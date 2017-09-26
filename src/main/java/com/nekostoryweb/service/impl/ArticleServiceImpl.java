@@ -34,7 +34,6 @@ public class ArticleServiceImpl implements ArticleService {
     public void saveArticle(ArticleDto articleDto) {
         Article article = new Article();
         BeanUtils.copyProperties(articleDto, article);
-
         articleMapper.insert(article);
     }
 
@@ -55,6 +54,14 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public void updateImg(ImgDto imgDto, Integer imgId){
+        Imgs imgs = new Imgs();
+        BeanUtils.copyProperties(imgDto, imgs);
+        imgs.setId(imgId);
+        imgsMapper.updateByPrimaryKeySelective(imgs);
+    }
+
+    @Override
     public void saveStrategy(StrategyDto strategyDto) {
         Strategy strategy = new Strategy();
         BeanUtils.copyProperties(strategyDto, strategy);
@@ -70,6 +77,15 @@ public class ArticleServiceImpl implements ArticleService {
             imgDto.setIsVideo((byte) 0);
         BeanUtils.copyProperties(imgDto, imgs);
         imgsMapper.insert(imgs);
+    }
+
+    @Override
+    public PageInfo<Imgs> getImgsList(Page page){
+        ImgsExample imgsExample = new ImgsExample();
+        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(page.getPage(),page.getRows());
+        List<Imgs> result = imgsMapper.selectByExample(imgsExample);
+        return new PageInfo<>(result);
+
     }
 
     @Override
@@ -97,5 +113,10 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void deleteStrategy(Integer strategyId){
         strategyMapper.deleteByPrimaryKey(strategyId);
+    }
+
+    @Override
+    public void deleteImgs(Integer imgId){
+        imgsMapper.deleteByPrimaryKey(imgId);
     }
 }

@@ -2,7 +2,10 @@ package com.nekostoryweb.service.impl;
 
 import com.nekostoryweb.dao.dto.BreadCrumbDto;
 import com.nekostoryweb.dao.dto.MenuDto;
+import com.nekostoryweb.dao.mapper.AccountMapper;
 import com.nekostoryweb.dao.mapper.MenuMapper;
+import com.nekostoryweb.dao.po.Account;
+import com.nekostoryweb.dao.po.AccountExample;
 import com.nekostoryweb.dao.po.Menu;
 import com.nekostoryweb.dao.po.MenuExample;
 import com.nekostoryweb.service.SystemService;
@@ -22,6 +25,8 @@ import java.util.Map;
 public class SystemServiceImpl implements SystemService {
     @Autowired
     MenuMapper menuMapper;
+    @Autowired
+    AccountMapper accountMapper;
 
     @Override
     public Map<String, Object> getMenu(String URI) {
@@ -73,5 +78,15 @@ public class SystemServiceImpl implements SystemService {
         });
         returnResult.put("menuResult", result);
         return returnResult;
+    }
+
+    @Override
+    public Integer login(String userName, String password){
+        AccountExample accountExample = new AccountExample();
+        accountExample.createCriteria().andAccountNameEqualTo(userName).andPasswordEqualTo(password);
+        List<Account> result = accountMapper.selectByExample(accountExample);
+        if(result.size() != 1)
+            return -1;
+        return 1;
     }
 }

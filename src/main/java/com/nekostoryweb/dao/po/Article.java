@@ -14,7 +14,7 @@ public class Article {
 
     private Integer type;
 
-    private Byte isUpToDate;
+    private byte isUpToDate;
 
     private String imgUrl;
 

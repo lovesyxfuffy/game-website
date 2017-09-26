@@ -8,4 +8,6 @@ import java.util.Map;
 public interface SystemService {
 
     Map<String, Object> getMenu(String URI);
+
+    Integer login(String userName, String password);
 }
