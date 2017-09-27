@@ -296,7 +296,7 @@ response:
 }
 ```
 
-#### 12.首页-获取footer内容
+#### 12.首页-获取footer内容 (update 17-09-27 增加weiboOfficial.link 因为微博需要可以点击)
 url:/front/mainPage/getFooterContent
 
 method:post
@@ -322,14 +322,15 @@ response:
     },
     "weiboOfficial":{
       "name":"萌猫物语微博",
-      "QRCodeUrl":"xxxxxxxxxx"
+      "QRCodeUrl":"xxxxxxxxxx",
+      "link":"http://xxxxxxx"
     },
     "tiebaUrl":"xxxxxxx"
   }
 }
 ```
 
-#### 13.首页-下载地址与二维码
+#### 13.首页-下载地址与二维码  (update 17-09-27 更新所有字段名称)
 
 
 url: /front/mainPage/getDownLoads
@@ -339,10 +340,10 @@ request:``{}``
 response:
 ```json
 {
-  "QRCode":"xxxxx",
-  "Android":"xxxx",
-  "IOS":"xxxxxx",
-  "PC":"xxxxxx"
+  "QRCodeUrl":"xxxxx",
+  "androidDownloadUrl":"xxxx",
+  "iosDownloadUrl":"xxxxxx",
+  "pcDownloadUrl":"xxxxxx"
 }
 ```
 
@@ -370,7 +371,7 @@ response:
 }
 ```
 
-#### 15.游戏攻略-获取攻略内容
+#### 15.游戏攻略-获取攻略内容 (update 17-09-27 补全返回值中page信息)
 url:/front/strategy/getContentList
 
 method:post
@@ -395,7 +396,12 @@ response:
         "subContent":"这是被剪剩下的一部分内容xxxx",
         "dateTime":"2017-07-19 10:38:04" //格式 2017-07-26 12:38:04
       },{},{}
-    ]
+    ],
+    "page":{
+        "pageNo":1,
+        "pageSize":10,
+        "total":3
+    }
   },
   "status":1
 }
@@ -422,7 +428,7 @@ response:
 }
 ```
 
-#### 17.首页轮播位 种类枚举
+#### 17.首页轮播位 种类枚举 (update 17-09-27 shanchu typeLink 项 统一改为 "/front/article/getArticleDetail/{articleId}")
 
 url:/front/mainPage/enum/getTypeEnum
 
@@ -438,7 +444,6 @@ response:
       {
         "code":4,
         "name":"最新",
-        "typeLink":"http://xxxxxxx/" //后面直接拼该类型ID即可用
       },{},{},{}
     ]
   }
@@ -446,7 +451,7 @@ response:
 }
 ```
 
-#### 18.获取首页框某分类列表
+#### 18.获取首页框某分类列表（update 改变返回参数格式）
 url:/front/mainPage/getTypeList/{typeCode}
 
 method:post
@@ -457,10 +462,11 @@ response:
 ```json
 {
   data:[
-  {
-    "id":3,
-    "content":"手游不知道什么时候就公测啦",
-    "addTime":"2017-07-19 03:00:27"
+   {
+      "id":3,
+      "title":"这是标题",
+      "subContent":"这是被剪剩下的一部分内容xxxx",
+      "dateTime":"2017-07-19 10:38:04" //格式 2017-07-26 12:38:04
   },{},{},{}
   ]
 

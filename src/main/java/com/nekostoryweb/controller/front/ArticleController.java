@@ -1,12 +1,15 @@
 package com.nekostoryweb.controller.front;
 
 import com.nekostoryweb.Contants.ArticleType;
+import com.nekostoryweb.Contants.ImgsType;
+import com.nekostoryweb.Contants.StrategyType;
 import com.nekostoryweb.dao.dto.FrontPage;
 import com.nekostoryweb.service.front.ArticleService;
 import com.nekostoryweb.utils.RequestBodyFilter;
 import com.nekostoryweb.utils.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -18,6 +21,7 @@ import java.util.Map;
  * Created by yujingyang on 2017/9/26.
  */
 @RequestMapping("/front")
+@Controller
 public class ArticleController {
 
     @Autowired
@@ -28,6 +32,19 @@ public class ArticleController {
         Map<Integer, String> articleType = ArticleType.getType();
         List<Map<String, Object>> result = new ArrayList<>();
         articleType.forEach((key, value) -> {
+            Map<String, Object> tmp = new HashMap<>();
+            tmp.put("typeCode", key);
+            tmp.put("typeName", value);
+            result.add(tmp);
+        });
+        return WebUtil.result(result);
+    }
+
+    @RequestMapping(value = "/strategy/getStrategyTypeEnum", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> getStrategyEnum() {
+        Map<Integer, String> strategyType = StrategyType.getStrategyType();
+        List<Map<String, Object>> result = new ArrayList<>();
+        strategyType.forEach((key, value) -> {
             Map<String, Object> tmp = new HashMap<>();
             tmp.put("typeCode", key);
             tmp.put("typeName", value);
@@ -55,7 +72,14 @@ public class ArticleController {
     public ResponseEntity<Map<String, Object>> getActivityContentList(@RequestBody Map<String, Integer> params) {
         Integer typeCode = params.get("typeCode");
         FrontPage frontPage = RequestBodyFilter.filter(params, FrontPage.class);
-        return WebUtil.result(articleService.getActivityList(frontPage,typeCode));
+        return WebUtil.result(articleService.getActivityList(frontPage, typeCode));
+    }
+
+    @RequestMapping(value = "/strategy/getContentList", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> getStrategyContentList(@RequestBody Map<String, Integer> params) {
+        Integer typeCode = params.get("typeCode");
+        FrontPage frontPage = RequestBodyFilter.filter(params, FrontPage.class);
+        return WebUtil.result(articleService.getStrategyList(frontPage, typeCode));
     }
 
     @RequestMapping(value = "/news/getContentList", method = RequestMethod.POST)
@@ -65,8 +89,28 @@ public class ArticleController {
         return WebUtil.result(articleService.getArticleList(frontPage, typeCode));
     }
 
-    @RequestMapping(value = {"/news/getNewsDetail/{articleId}","/activity/getActivityDetail/{articleId}"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/news/getNewsDetail/{articleId}", "/activity/getActivityDetail/{articleId}", "/article/getArticle/{articleId}"}, method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> getNewsDetail(@PathVariable("articleId") Integer articleId) {
         return WebUtil.result(articleService.getArticle(articleId));
+    }
+
+    @RequestMapping(value = "/doujin/getTypeEnum", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> getImgsTypeEnum() {
+        Map<Integer, String> articleType = ImgsType.getImgsType();
+        List<Map<String, Object>> result = new ArrayList<>();
+        articleType.forEach((key, value) -> {
+            Map<String, Object> tmp = new HashMap<>();
+            tmp.put("typeCode", key);
+            tmp.put("typeName", value);
+            result.add(tmp);
+        });
+        return WebUtil.result(result);
+    }
+
+    @RequestMapping(value = "/doujin/getContentList", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> getImgsContentList(@RequestBody Map<String, Integer> params) {
+        Integer typeCode = params.get("typeCode");
+        FrontPage frontPage = RequestBodyFilter.filter(params, FrontPage.class);
+        return WebUtil.result(articleService.getImgsContentList(frontPage, typeCode));
     }
 }

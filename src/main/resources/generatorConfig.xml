@@ -72,12 +72,17 @@
             <!--<property name="useActualColumnNames" value="false"/>-->
         <!--</table>-->
 
-        <table schema="nekostory_web" tableName="s_imgs" domainObjectName="Imgs"
+        <!--<table schema="nekostory_web" tableName="s_imgs" domainObjectName="Imgs"-->
+               <!--enableCountByExample="true" enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true" enableUpdateByExample="true">-->
+            <!--<property name="useActualColumnNames" value="false"/>-->
+        <!--</table>-->
+
+        <table schema="nekostory_web" tableName="t_order_info" domainObjectName="OrderInfo"
                enableCountByExample="true" enableDeleteByExample="true"
                enableSelectByExample="true" enableUpdateByExample="true">
             <property name="useActualColumnNames" value="false"/>
         </table>
-
 
     </context>
 </generatorConfiguration>

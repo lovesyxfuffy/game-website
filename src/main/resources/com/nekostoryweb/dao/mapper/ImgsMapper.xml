@@ -98,6 +98,12 @@
         from s_imgs
         where id = #{id,jdbcType=INTEGER}
     </select>
+    <select id="selectByType" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from s_imgs
+        where `type` &amp; #{type} = 1
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from s_imgs
     where id = #{id,jdbcType=INTEGER}
@@ -285,7 +291,7 @@
             <if test="addTime != null">
                 add_time = #{addTime,jdbcType=TIMESTAMP},
             </if>
-                update_time = now()
+            update_time = now()
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>

@@ -83,7 +83,7 @@
     SELECT
     <include refid="Base_Column_List" />
     from s_article
-    where status &amp; #{status} = 1
+    where `type` &amp; #{status} = 1
   </select>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nekostoryweb.dao.po.ArticleExample" >
     select

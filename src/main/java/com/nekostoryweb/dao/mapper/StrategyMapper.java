@@ -35,4 +35,6 @@ public interface StrategyMapper {
     int updateByPrimaryKeyWithBLOBs(Strategy record);
 
     int updateByPrimaryKey(Strategy record);
+
+    List<Strategy> selectByStatus(Integer status);
 }

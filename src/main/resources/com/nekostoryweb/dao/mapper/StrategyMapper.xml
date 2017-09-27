@@ -79,6 +79,13 @@
   <sql id="Blob_Column_List" >
     content
   </sql>
+  <select id="selectByStatus" resultMap="BaseResultMap">
+
+    SELECT
+    <include refid="Base_Column_List" />
+    from s_strategy
+    where `type` &amp; #{status} = 1
+  </select>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nekostoryweb.dao.po.StrategyExample" >
     select
     <if test="distinct" >

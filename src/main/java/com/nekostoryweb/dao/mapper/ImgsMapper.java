@@ -2,7 +2,9 @@ package com.nekostoryweb.dao.mapper;
 
 import com.nekostoryweb.dao.po.Imgs;
 import com.nekostoryweb.dao.po.ImgsExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +21,8 @@ public interface ImgsMapper {
     int insertSelective(Imgs record);
 
     List<Imgs> selectByExample(ImgsExample example);
+
+    List<Imgs> selectByType(Integer type);
 
     Imgs selectByPrimaryKey(Integer id);
 
