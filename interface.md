@@ -442,8 +442,8 @@ response:
   "data":{
     "typeList":[
       {
-        "code":4,
-        "name":"最新",
+        "typeCode":4,
+        "typeName":"最新",
         "typeLink":"/getArticleDetail/",
       },{},{},{}
     ]
