@@ -35,7 +35,7 @@ public class AccountController {
         return WebUtil.result("");
     }
 
-    @RequestMapping(value = "/account/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> params, HttpServletRequest request) {
         OrderInfo orderInfo = RequestBodyFilter.filter(params, OrderInfo.class);
         orderInfo.setAddTime(new Date());

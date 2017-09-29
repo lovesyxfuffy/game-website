@@ -6,6 +6,7 @@ import com.nekostoryweb.dao.dto.FrontPage;
 import com.nekostoryweb.dao.mapper.StrategyMapper;
 import com.nekostoryweb.dao.po.Strategy;
 import com.nekostoryweb.dao.po.StrategyExample;
+import com.nekostoryweb.service.front.AccountService;
 import com.nekostoryweb.service.front.ArticleService;
 import com.nekostoryweb.service.front.MainPageService;
 import com.nekostoryweb.utils.WebUtil;
@@ -34,6 +35,8 @@ public class MainPageController {
     ArticleService articleService;
     @Autowired
     StrategyMapper strategymapper;
+    @Autowired
+    AccountService accountService;
 
     @RequestMapping(value = "/getVideoPage", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> getVideoPage(@RequestBody Map<String, Integer> params) {
@@ -48,7 +51,7 @@ public class MainPageController {
         return WebUtil.result(mainPageService.getConfigs());
     }
 
-    @RequestMapping(value = "/getTypeEnum", method = RequestMethod.POST)
+    @RequestMapping(value = "/enum/getTypeEnum", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> getTypeEnum() {
         Map<Integer, String> articleType = MainPageType.getMainPageType();
         List<Map<String, Object>> result = new ArrayList<>();
@@ -56,9 +59,16 @@ public class MainPageController {
             Map<String, Object> tmp = new HashMap<>();
             tmp.put("typeCode", key);
             tmp.put("typeName", value);
+            if(key.equals(4))
+                tmp.put("typeLink", "/strategy/getStrategyDetail/");
+            else
+                tmp.put("typeLink", "/article/getArticleDetail/");
+
             result.add(tmp);
         });
-        return WebUtil.result(result);
+        Map<String,Object> returnResult = new HashMap<>();
+        returnResult.put("typeList",result);
+        return WebUtil.result(returnResult);
     }
 
     @RequestMapping(value = "/getTypeList/{typeCode}", method = RequestMethod.POST)
@@ -68,28 +78,28 @@ public class MainPageController {
             case 0: {
                 FrontPage frontPage = new FrontPage();
                 frontPage.setPageSize(5);
-                frontPage.setPageNumber(1);
+                frontPage.setPageNo(1);
                 result = articleService.getArticleList(frontPage, 0);
                 break;
             }
             case 1: {
                 FrontPage frontPage = new FrontPage();
                 frontPage.setPageSize(5);
-                frontPage.setPageNumber(1);
+                frontPage.setPageNo(1);
                 result = articleService.getArticleList(frontPage, 1);
                 break;
             }
             case 2: {
                 FrontPage frontPage = new FrontPage();
                 frontPage.setPageSize(5);
-                frontPage.setPageNumber(1);
+                frontPage.setPageNo(1);
                 result = articleService.getArticleList(frontPage, 2);
                 break;
             }
             case 3: {
                 FrontPage frontPage = new FrontPage();
                 frontPage.setPageSize(5);
-                frontPage.setPageNumber(1);
+                frontPage.setPageNo(1);
                 List<Map<String, Object>> tmp = (List<Map<String, Object>>) articleService.getArticleList(frontPage, 4).get("contentList");
                 List<Map<String, Object>> tmp2 = (List<Map<String, Object>>) articleService.getArticleList(frontPage, 8).get("contentList");
                 Map<String, Object> t = new HashMap<String, Object>();
@@ -100,7 +110,7 @@ public class MainPageController {
             case 4: {
                 FrontPage frontPage = new FrontPage();
                 frontPage.setPageSize(5);
-                frontPage.setPageNumber(1);
+                frontPage.setPageNo(1);
                 result = articleService.getStrategyList(frontPage, -1);
                 break;
             }
@@ -114,5 +124,11 @@ public class MainPageController {
         return WebUtil.result(articleService.getImgs());
     }
 
+    @RequestMapping(value = "/getOrderedAmount",method = RequestMethod.POST)
+    public ResponseEntity<Map<String,Object>> getOrderedAmount(){
+        Map<String,Integer> result = new HashMap<>();
+        result.put("amount",accountService.getOrderCount());
+        return WebUtil.result(result);
+    }
 
 }

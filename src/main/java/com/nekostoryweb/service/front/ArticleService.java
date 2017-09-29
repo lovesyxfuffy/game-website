@@ -18,6 +18,8 @@ public interface ArticleService {
 
     Map<String, String> getArticle(Integer articleId);
 
+    Map<String, String> getStrategy(Integer strategyId);
+
     Map<String, Object> getActivityList(FrontPage frontPage, Integer typeCode);
 
     Map<String, Object> getImgsContentList(FrontPage frontPage, Integer typeCode);

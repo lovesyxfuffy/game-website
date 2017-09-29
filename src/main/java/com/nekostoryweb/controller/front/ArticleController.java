@@ -37,7 +37,9 @@ public class ArticleController {
             tmp.put("typeName", value);
             result.add(tmp);
         });
-        return WebUtil.result(result);
+        Map<String,Object> returnResult = new HashMap<>();
+        returnResult.put("typeList",result);
+        return WebUtil.result(returnResult);
     }
 
     @RequestMapping(value = "/strategy/getStrategyTypeEnum", method = RequestMethod.POST)
@@ -50,7 +52,9 @@ public class ArticleController {
             tmp.put("typeName", value);
             result.add(tmp);
         });
-        return WebUtil.result(result);
+        Map<String,Object> returnResult = new HashMap<>();
+        returnResult.put("typeList",result);
+        return WebUtil.result(returnResult);
     }
 
     @RequestMapping(value = "/activity/getTypeEnum", method = RequestMethod.POST)
@@ -65,7 +69,9 @@ public class ArticleController {
                 result.add(tmp);
             }
         });
-        return WebUtil.result(result);
+        Map<String,Object> returnResult = new HashMap<>();
+        returnResult.put("typeList",result);
+        return WebUtil.result(returnResult);
     }
 
     @RequestMapping(value = "/activity/getContentList", method = RequestMethod.POST)
@@ -89,9 +95,13 @@ public class ArticleController {
         return WebUtil.result(articleService.getArticleList(frontPage, typeCode));
     }
 
-    @RequestMapping(value = {"/news/getNewsDetail/{articleId}", "/activity/getActivityDetail/{articleId}", "/article/getArticle/{articleId}"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/news/getNewsDetail/{articleId}", "/activity/getActivityDetail/{articleId}", "/article/getArticleDetail/{articleId}"}, method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> getNewsDetail(@PathVariable("articleId") Integer articleId) {
         return WebUtil.result(articleService.getArticle(articleId));
+    }
+    @RequestMapping(value = "/strategy/getStrategyDetail/{strategyId}", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> getStrategyDetail(@PathVariable("strategyId") Integer strategyId) {
+        return WebUtil.result(articleService.getStrategy(strategyId));
     }
 
     @RequestMapping(value = "/doujin/getTypeEnum", method = RequestMethod.POST)
@@ -104,7 +114,9 @@ public class ArticleController {
             tmp.put("typeName", value);
             result.add(tmp);
         });
-        return WebUtil.result(result);
+        Map<String,Object> returnResult = new HashMap<>();
+        returnResult.put("typeList",result);
+        return WebUtil.result(returnResult);
     }
 
     @RequestMapping(value = "/doujin/getContentList", method = RequestMethod.POST)

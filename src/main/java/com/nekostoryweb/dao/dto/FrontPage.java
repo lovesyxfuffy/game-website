@@ -7,7 +7,7 @@ import lombok.Data;
  */
 @Data
 public class FrontPage {
-    Integer pageNumber;
+    Integer pageNo;
     Integer pageSize;
     Integer total;
 }

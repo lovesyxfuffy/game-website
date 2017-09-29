@@ -11,7 +11,7 @@ public class PageFilter {
 
     public static FrontPage filter(PageInfo pageInfo){
         FrontPage frontPage = new FrontPage();
-        frontPage.setPageNumber(pageInfo.getPageNum());
+        frontPage.setPageNo(pageInfo.getPageNum());
         frontPage.setTotal((int)pageInfo.getTotal());
         frontPage.setPageSize(pageInfo.getPageSize());
         return frontPage;

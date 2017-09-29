@@ -8,6 +8,7 @@ import com.nekostoryweb.dao.mapper.ImgsMapper;
 import com.nekostoryweb.dao.mapper.StrategyMapper;
 import com.nekostoryweb.dao.po.*;
 import com.nekostoryweb.service.front.ArticleService;
+import com.nekostoryweb.utils.HtmlFilterUtil;
 import com.nekostoryweb.utils.PageFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Map<String, Object> getArticleList(FrontPage frontPage, Integer typeCode) {
-        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(frontPage.getPageNumber(), frontPage.getPageSize());
+        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(frontPage.getPageNo(), frontPage.getPageSize());
         List<Article> result;
         if (typeCode != 0)
             result = articleMapper.selectByStatus(typeCode);
@@ -48,7 +49,13 @@ public class ArticleServiceImpl implements ArticleService {
             Map<String, Object> tmp = new HashMap<>();
             tmp.put("id", row.getId());
             tmp.put("title", row.getTitle());
-            tmp.put("subContent", row.getContent().substring(0, 30));
+            String tmpContent = HtmlFilterUtil.filter(row.getContent());
+            tmpContent = tmpContent.trim().replace("\r", "").replace("\n", "");
+            try {
+                tmp.put("subContent", tmpContent.substring(0, 30));
+            } catch (StringIndexOutOfBoundsException e) {
+                tmp.put("subContent", tmpContent);
+            }
             tmp.put("dateTime", row.getAddTime());
             returnList.add(tmp);
         });
@@ -72,7 +79,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Map<String, Object> getStrategyList(FrontPage frontPage, Integer typeCode) {
-        com.github.pagehelper.Page<Strategy> page1 = PageHelper.startPage(frontPage.getPageNumber(), frontPage.getPageSize());
+        com.github.pagehelper.Page<Strategy> page1 = PageHelper.startPage(frontPage.getPageNo(), frontPage.getPageSize());
         List<Strategy> result;
         if (typeCode != -1)
             result = strategyMapper.selectByStatus(typeCode);
@@ -85,7 +92,12 @@ public class ArticleServiceImpl implements ArticleService {
             Map<String, Object> tmp = new HashMap<>();
             tmp.put("id", row.getId());
             tmp.put("title", row.getTitle());
-            tmp.put("subContent", row.getContent().substring(0, 30));
+            String tmpStr = HtmlFilterUtil.filter(row.getContent());
+            try {
+                tmp.put("subContent", tmpStr.substring(0, 30));
+            } catch (StringIndexOutOfBoundsException e) {
+                tmp.put("subContent", tmpStr);
+            }
             tmp.put("dateTime", row.getAddTime());
             returnList.add(tmp);
         });
@@ -107,8 +119,19 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Map<String, String> getStrategy(Integer strategyId) {
+        Strategy strategy = strategyMapper.selectByPrimaryKey(strategyId);
+        Map<String, String> result = new HashMap<>();
+        result.put("title", strategy.getTitle());
+        result.put("writer", strategy.getWriter());
+        result.put("dateTime", strategy.getAddTime());
+        result.put("content", strategy.getContent());
+        return result;
+    }
+
+    @Override
     public Map<String, Object> getActivityList(FrontPage frontPage, Integer typeCode) {
-        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(frontPage.getPageNumber(), frontPage.getPageSize());
+        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(frontPage.getPageNo(), frontPage.getPageSize());
         List<Article> result = articleMapper.selectByStatus(typeCode);
         PageInfo<Article> pageInfo = new PageInfo<>(result);
         List<Map<String, Object>> returnList = new ArrayList<>();
@@ -127,7 +150,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Map<String, Object> getImgsContentList(FrontPage frontPage, Integer typeCode) {
         List<Imgs> result;
-        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(frontPage.getPageNumber(), frontPage.getPageSize());
+        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(frontPage.getPageNo(), frontPage.getPageSize());
         if (typeCode == 0) {
             ImgsExample imgsExample = new ImgsExample();
             imgsExample.createCriteria().andIsSelectEqualTo((byte) 1);
@@ -138,7 +161,7 @@ public class ArticleServiceImpl implements ArticleService {
         List<Map<String, Object>> returnList = new ArrayList<>();
         result.forEach((row) -> {
             Map<String, Object> tmp = new HashMap<>();
-            tmp.put("isVideo", row.getIsVideo() == (byte)1);
+            tmp.put("isVideo", row.getIsVideo() == (byte) 1);
             tmp.put("imgUrl", row.getImgUrl());
             tmp.put("videoUrl", row.getVideoUrl());
 

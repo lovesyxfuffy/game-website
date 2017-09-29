@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="writer" property="writer" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="is_up_to_date" property="isUpToDate" jdbcType="TINYINT" />
     <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
@@ -74,7 +75,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, title, writer, type, is_up_to_date, img_url, order_key, add_time, update_time
+    id, title, content ,writer, type, is_up_to_date, img_url, order_key, add_time, update_time
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -83,7 +84,7 @@
     SELECT
     <include refid="Base_Column_List" />
     from s_article
-    where `type` &amp; #{status} = 1
+    where `type` &amp; #{status} = #{status}
   </select>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nekostoryweb.dao.po.ArticleExample" >
     select

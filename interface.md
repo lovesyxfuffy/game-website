@@ -428,7 +428,7 @@ response:
 }
 ```
 
-#### 17.首页轮播位 种类枚举 (update 17-09-27 shanchu typeLink 项 统一改为 "/front/article/getArticleDetail/{articleId}")
+#### 17.首页轮播位 种类枚举
 
 url:/front/mainPage/enum/getTypeEnum
 
@@ -444,6 +444,7 @@ response:
       {
         "code":4,
         "name":"最新",
+        "typeLink":"/getArticleDetail/",
       },{},{},{}
     ]
   }

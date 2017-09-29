@@ -28,7 +28,7 @@ public class MainPageServiceImpl implements MainPageService {
 
     @Override
     public String getVideoConfig(Integer typeCode) {
-        Config config = getConfigValue(VideoConstants.getConfigMap().get(typeCode));
+        Config config = getConfigValue(VideoConstants.getConfigMap().get(String.valueOf(typeCode)));
         return config.getConfigValue();
     }
 
@@ -48,9 +48,9 @@ public class MainPageServiceImpl implements MainPageService {
         configs.put("weiboOfficial",weiboOfficial);
 
         Map<String,String> wechatOfficial = new HashMap<>();
-        weiboOfficial.put("name", (String) configs.get("wechatOfficialName"));
-        weiboOfficial.put("QRCodeUrl", (String) configs.get("wechatOfficialUrl"));
-        configs.put("weiboOfficial",wechatOfficial);
+        wechatOfficial.put("name", (String) configs.get("wechatOfficialName"));
+        wechatOfficial.put("QRCodeUrl", (String) configs.get("wechatOfficialUrl"));
+        configs.put("wechatOfficial",wechatOfficial);
 
         return configs;
     }

@@ -98,4 +98,9 @@ public class AccountServiceImpl implements AccountService{
             return 1;
         }
     }
+
+    @Override
+    public int getOrderCount(){
+        return orderInfoMapper.countByExample(new OrderInfoExample());
+    }
 }
