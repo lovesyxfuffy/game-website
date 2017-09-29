@@ -39,8 +39,8 @@ public class MetaManageController {
     public ResponseEntity<Map<String,Object>> uploadOfficialInfo(@RequestParam("wechatFile")CommonsMultipartFile wechatFile,
                                                                  @RequestParam("weiboFile")CommonsMultipartFile weiboFile,
                                                                  OfficialInfoDto officialInfoDto){
-        officialInfoDto.setWechatOfficialUrl(metaService.saveFile(wechatFile));
-        officialInfoDto.setWeiboOfficialUrl(metaService.saveFile(weiboFile));
+        officialInfoDto.setWechatOfficialUrl(staticFilePath+metaService.saveFile(wechatFile));
+        officialInfoDto.setWeiboOfficialUrl(staticFilePath+metaService.saveFile(weiboFile));
         metaService.saveConfig(officialInfoDto,"officialInfo");
         return WebUtil.result("");
     }

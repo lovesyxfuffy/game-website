@@ -12,7 +12,7 @@ import java.util.Map;
 @Controller
 public class IndexController {
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @RequestMapping(value = "/*",method = RequestMethod.GET)
     public String getIndex(){
         return "index.ftl";
     }

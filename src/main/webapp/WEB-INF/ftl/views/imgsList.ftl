@@ -82,11 +82,11 @@
 
                 root: "data.list",
 
-                page: "pageNum",
+                page: "data.pageNum",
 
-                total: "total",
+                total: "data.pages",
 
-                records: "total",
+                records: "data.total",
 
                 cell: "data.list"
 

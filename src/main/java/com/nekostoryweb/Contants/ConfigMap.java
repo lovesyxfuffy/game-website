@@ -24,7 +24,8 @@ public class ConfigMap {
 
         configMap.put("customerService","客服电话");
         configMap.put("qqGroupList","qq群");
-        configMap.put("wechatOfficialName","官方微博名称");
+        configMap.put("weiboOfficialName","官方微博名称");
+        configMap.put("wechatOfficialName","官方微信名称");
         configMap.put("weiboOfficialLink","官方微博链接");
         configMap.put("tiebaUrl","贴吧链接");
         configMap.put("wechatOfficialUrl","微信官方二维码链接");

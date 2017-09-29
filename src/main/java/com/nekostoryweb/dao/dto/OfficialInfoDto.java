@@ -10,6 +10,7 @@ public class OfficialInfoDto {
     String customerService;
     String qqGroupList;
     String wechatOfficialName;
+    String weiboOfficialName;
     String weiboOfficialLink;
     String tiebaUrl;
     String wechatOfficialUrl;

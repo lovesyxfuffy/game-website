@@ -59,15 +59,15 @@ public class MainPageController {
             Map<String, Object> tmp = new HashMap<>();
             tmp.put("typeCode", key);
             tmp.put("typeName", value);
-            if(key.equals(4))
-                tmp.put("typeLink", "/strategy/getStrategyDetail/");
+            if (key.equals(4))
+                tmp.put("typeLink", "/strategyDetail/");
             else
-                tmp.put("typeLink", "/article/getArticleDetail/");
+                tmp.put("typeLink", "/newsDetail/");
 
             result.add(tmp);
         });
-        Map<String,Object> returnResult = new HashMap<>();
-        returnResult.put("typeList",result);
+        Map<String, Object> returnResult = new HashMap<>();
+        returnResult.put("typeList", result);
         return WebUtil.result(returnResult);
     }
 
@@ -103,7 +103,8 @@ public class MainPageController {
                 List<Map<String, Object>> tmp = (List<Map<String, Object>>) articleService.getArticleList(frontPage, 4).get("contentList");
                 List<Map<String, Object>> tmp2 = (List<Map<String, Object>>) articleService.getArticleList(frontPage, 8).get("contentList");
                 Map<String, Object> t = new HashMap<String, Object>();
-                t.put("ContentList", tmp.addAll(tmp2));
+                tmp.addAll(tmp2);
+                t.put("contentList", tmp);
                 result = t;
                 break;
             }
@@ -124,10 +125,10 @@ public class MainPageController {
         return WebUtil.result(articleService.getImgs());
     }
 
-    @RequestMapping(value = "/getOrderedAmount",method = RequestMethod.POST)
-    public ResponseEntity<Map<String,Object>> getOrderedAmount(){
-        Map<String,Integer> result = new HashMap<>();
-        result.put("amount",accountService.getOrderCount());
+    @RequestMapping(value = "/getOrderedAmount", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> getOrderedAmount() {
+        Map<String, Integer> result = new HashMap<>();
+        result.put("amount", accountService.getOrderCount());
         return WebUtil.result(result);
     }
 
