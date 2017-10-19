@@ -31,23 +31,27 @@ public class MetaManageController {
         String fileName = metaService.saveFile(QRCode);
         if (fileName != null)
             gameLinkDto.setQRCodeUrl(staticFilePath + fileName);
-        metaService.saveConfig(gameLinkDto,"sidebar");
+        metaService.saveConfig(gameLinkDto, "sidebar");
         return WebUtil.result("");
     }
 
-    @RequestMapping(value = "uploadOfficialInfo",method = RequestMethod.POST)
-    public ResponseEntity<Map<String,Object>> uploadOfficialInfo(@RequestParam("wechatFile")CommonsMultipartFile wechatFile,
-                                                                 @RequestParam("weiboFile")CommonsMultipartFile weiboFile,
-                                                                 OfficialInfoDto officialInfoDto){
-        officialInfoDto.setWechatOfficialUrl(staticFilePath+metaService.saveFile(wechatFile));
-        officialInfoDto.setWeiboOfficialUrl(staticFilePath+metaService.saveFile(weiboFile));
-        metaService.saveConfig(officialInfoDto,"officialInfo");
+    @RequestMapping(value = "uploadOfficialInfo", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> uploadOfficialInfo(@RequestParam("wechatFile") CommonsMultipartFile wechatFile,
+                                                                  @RequestParam("weiboFile") CommonsMultipartFile weiboFile,
+                                                                  OfficialInfoDto officialInfoDto) {
+        String wechatName = metaService.saveFile(wechatFile);
+        String weiboName = metaService.saveFile(weiboFile);
+        if (wechatName != null)
+            officialInfoDto.setWechatOfficialUrl(staticFilePath + wechatName);
+        if (weiboName != null)
+            officialInfoDto.setWeiboOfficialUrl(staticFilePath + weiboName);
+        metaService.saveConfig(officialInfoDto, "officialInfo");
         return WebUtil.result("");
     }
 
-    @RequestMapping(value = "uploadAboutUs",method = RequestMethod.POST)
-    public ResponseEntity<Map<String,Object>> uploadAboutUs(AboutUsDto aboutUsDto){
-        metaService.saveConfig(aboutUsDto,"aboutUs");
+    @RequestMapping(value = "uploadAboutUs", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> uploadAboutUs(AboutUsDto aboutUsDto) {
+        metaService.saveConfig(aboutUsDto, "aboutUs");
         return WebUtil.result("");
     }
 }

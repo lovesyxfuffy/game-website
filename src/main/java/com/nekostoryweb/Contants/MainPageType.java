@@ -1,10 +1,6 @@
-package com.nekostoryweb.Contants;
+package com.nekostoryweb.contants;
 
-import com.nekostoryweb.dao.dto.MainPageDto;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

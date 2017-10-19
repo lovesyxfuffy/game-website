@@ -1,4 +1,4 @@
-package com.nekostoryweb.Contants;
+package com.nekostoryweb.contants;
 
 import java.util.HashMap;
 import java.util.Map;

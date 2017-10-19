@@ -1,11 +1,8 @@
 package com.nekostoryweb.controller.front;
 
-import com.nekostoryweb.Contants.ArticleType;
-import com.nekostoryweb.Contants.MainPageType;
+import com.nekostoryweb.contants.MainPageType;
 import com.nekostoryweb.dao.dto.FrontPage;
 import com.nekostoryweb.dao.mapper.StrategyMapper;
-import com.nekostoryweb.dao.po.Strategy;
-import com.nekostoryweb.dao.po.StrategyExample;
 import com.nekostoryweb.service.front.AccountService;
 import com.nekostoryweb.service.front.ArticleService;
 import com.nekostoryweb.service.front.MainPageService;

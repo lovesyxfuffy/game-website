@@ -34,6 +34,7 @@ public class ArticleServiceImpl implements ArticleService {
     public void saveArticle(ArticleDto articleDto) {
         Article article = new Article();
         BeanUtils.copyProperties(articleDto, article);
+        article.setContent(article.getContent().replace("&lt;embed","<embed").replace("&gt;&lt;/embed&gt;","></embed>"));
         articleMapper.insert(article);
     }
 
@@ -42,6 +43,8 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = new Article();
         BeanUtils.copyProperties(articleDto, article);
         article.setId(articleId);
+        article.setContent(article.getContent().replace("&lt;embed","<embed").replace("&gt;&lt;/embed&gt;","></embed>"));
+
         articleMapper.updateByPrimaryKeySelective(article);
     }
 
@@ -50,6 +53,7 @@ public class ArticleServiceImpl implements ArticleService {
         Strategy strategy = new Strategy();
         BeanUtils.copyProperties(strategyDto, strategy);
         strategy.setId(strategyId);
+        strategy.setContent(strategy.getContent().replace("&lt;embed","<embed").replace("&gt;&lt;/embed&gt;","></embed>"));
         strategyMapper.updateByPrimaryKeySelective(strategy);
     }
 
@@ -65,6 +69,8 @@ public class ArticleServiceImpl implements ArticleService {
     public void saveStrategy(StrategyDto strategyDto) {
         Strategy strategy = new Strategy();
         BeanUtils.copyProperties(strategyDto, strategy);
+        strategy.setContent(strategy.getContent().replace("&lt;embed","<embed").replace("&gt;&lt;/embed&gt;","></embed>"));
+
         strategyMapper.insert(strategy);
     }
 

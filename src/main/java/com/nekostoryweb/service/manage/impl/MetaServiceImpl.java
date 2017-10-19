@@ -1,6 +1,6 @@
 package com.nekostoryweb.service.manage.impl;
 
-import com.nekostoryweb.Contants.ConfigMap;
+import com.nekostoryweb.contants.ConfigMap;
 import com.nekostoryweb.Exception.BizException;
 import com.nekostoryweb.dao.mapper.ConfigMapper;
 import com.nekostoryweb.dao.po.Config;
@@ -32,18 +32,20 @@ public class MetaServiceImpl implements MetaService {
     @Override
     public String saveFile(CommonsMultipartFile file) {
         Properties properties = new Properties();
+        if (file == null || file.getSize() == 0)
+            return null;
         try {
             @Cleanup InputStream inputStream = this.getClass().getResourceAsStream("/config/app.properties");
             properties.load(inputStream);
             String savePath = properties.getProperty("savePath");
             String saveFile = savePath + file.getOriginalFilename();
-            if("".equals(file.getOriginalFilename()) || file.getOriginalFilename() == null)
+            if ("".equals(file.getOriginalFilename()) || file.getOriginalFilename() == null)
                 return null;
             File newFile = new File(saveFile);
 
             file.transferTo(newFile);
             File afterFile = new File(saveFile);
-            while(!afterFile.exists()){
+            while (!afterFile.exists()) {
                 Thread.sleep(100);
             }
         } catch (IOException e) {
@@ -65,12 +67,12 @@ public class MetaServiceImpl implements MetaService {
             config.setConfigKey(propertyDescriptor.getName());
             try {
                 Object property = propertyDescriptor.getReadMethod().invoke(dto);
-                if(property == null)
+                if (property == null)
                     continue;
-                if (property instanceof java.lang.String){
+                if (property instanceof java.lang.String && (!"".equals(property))) {
+
                     config.setConfigValue((String) property);
-                }
-                else
+                } else
                     continue;
             } catch (IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
@@ -80,7 +82,7 @@ public class MetaServiceImpl implements MetaService {
             configList.add(config);
         }
 
-       configMapper.batchInsert(configList);
+        configMapper.batchInsert(configList);
 
 
     }

@@ -1,7 +1,7 @@
 package com.nekostoryweb.utils;
 
 import com.google.common.collect.Maps;
-import com.nekostoryweb.Contants.ResponseConstants;
+import com.nekostoryweb.contants.ResponseConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

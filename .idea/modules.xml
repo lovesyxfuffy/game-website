@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/neko-story-web.iml" filepath="$PROJECT_DIR$/neko-story-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/com.nekostoryweb.iml" filepath="$PROJECT_DIR$/com.nekostoryweb.iml" />
     </modules>
   </component>
 </project>

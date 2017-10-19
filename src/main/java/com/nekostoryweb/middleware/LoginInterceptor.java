@@ -1,6 +1,6 @@
 package com.nekostoryweb.middleware;
 
-import com.nekostoryweb.Contants.CacheMap;
+import com.nekostoryweb.contants.CacheMap;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 

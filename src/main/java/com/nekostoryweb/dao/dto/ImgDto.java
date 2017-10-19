@@ -17,9 +17,9 @@ public class ImgDto {
 
     private Integer type;
 
-    private Byte isSelect;
+    private byte isSelect;
 
-    private Byte isVideo;
+    private byte isVideo;
 
     private Integer orderKey;
 

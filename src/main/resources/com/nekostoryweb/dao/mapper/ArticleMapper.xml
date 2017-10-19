@@ -85,6 +85,7 @@
     <include refid="Base_Column_List" />
     from s_article
     where `type` &amp; #{status} = #{status}
+    order by add_time desc
   </select>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.nekostoryweb.dao.po.ArticleExample" >
     select

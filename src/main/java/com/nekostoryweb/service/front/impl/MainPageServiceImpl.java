@@ -1,6 +1,6 @@
 package com.nekostoryweb.service.front.impl;
 
-import com.nekostoryweb.Contants.VideoConstants;
+import com.nekostoryweb.contants.VideoConstants;
 import com.nekostoryweb.dao.mapper.ConfigMapper;
 import com.nekostoryweb.dao.po.Config;
 import com.nekostoryweb.dao.po.ConfigExample;

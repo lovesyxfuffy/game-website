@@ -12,7 +12,7 @@ public interface ArticleService {
     Map<String, Object> getArticleList(FrontPage frontPage, Integer typeCode);
 
 
-    List<String> getImgs();
+    List<Map<String, String>> getImgs();
 
     Map<String, Object> getStrategyList(FrontPage frontPage, Integer typeCode);
 

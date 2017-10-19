@@ -33,7 +33,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Map<String, Object> getArticleList(FrontPage frontPage, Integer typeCode) {
-        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(frontPage.getPageNo(), frontPage.getPageSize());
+        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(frontPage.getPageNo(), frontPage.getPageSize(),"order_key desc");
         List<Article> result;
         if (typeCode != 0)
             result = articleMapper.selectByStatus(typeCode);
@@ -66,20 +66,25 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<String> getImgs() {
+    public List<Map<String, String>> getImgs() {
         ArticleExample articleExample = new ArticleExample();
         articleExample.createCriteria().andIsUpToDateEqualTo((byte) 1);
-        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(1, 5);
+        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(1, 5,"order_key desc");
         List<Article> result = articleMapper.selectByExample(articleExample);
         PageInfo<Article> pageInfo = new PageInfo<>(result);
-        List<String> returnList = new ArrayList<>();
-        result.forEach((row) -> returnList.add(row.getImgUrl()));
+        List<Map<String,String>> returnList = new ArrayList<>();
+        result.forEach((row) ->{
+            Map<String,String> rowMap = new HashMap<>();
+            rowMap.put("imgUrl",row.getImgUrl());
+            rowMap.put("href","http://139.224.222.90/newsDetail/"+row.getId());
+            returnList.add(rowMap);
+        } );
         return returnList;
     }
 
     @Override
     public Map<String, Object> getStrategyList(FrontPage frontPage, Integer typeCode) {
-        com.github.pagehelper.Page<Strategy> page1 = PageHelper.startPage(frontPage.getPageNo(), frontPage.getPageSize());
+        com.github.pagehelper.Page<Strategy> page1 = PageHelper.startPage(frontPage.getPageNo(), frontPage.getPageSize(),"order_key desc");
         List<Strategy> result;
         if (typeCode != -1)
             result = strategyMapper.selectByStatus(typeCode);
@@ -131,7 +136,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Map<String, Object> getActivityList(FrontPage frontPage, Integer typeCode) {
-        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(frontPage.getPageNo(), frontPage.getPageSize());
+        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(frontPage.getPageNo(), frontPage.getPageSize(),"order_key desc");
         List<Article> result = articleMapper.selectByStatus(typeCode);
         PageInfo<Article> pageInfo = new PageInfo<>(result);
         List<Map<String, Object>> returnList = new ArrayList<>();
@@ -150,7 +155,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Map<String, Object> getImgsContentList(FrontPage frontPage, Integer typeCode) {
         List<Imgs> result;
-        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(frontPage.getPageNo(), frontPage.getPageSize());
+        com.github.pagehelper.Page<Article> page1 = PageHelper.startPage(frontPage.getPageNo(), frontPage.getPageSize(),"order_key desc");
         if (typeCode == 0) {
             ImgsExample imgsExample = new ImgsExample();
             imgsExample.createCriteria().andIsSelectEqualTo((byte) 1);

@@ -1,8 +1,6 @@
 package com.nekostoryweb.controller.front;
 
-import com.nekostoryweb.Contants.CacheMap;
-import com.nekostoryweb.dao.mapper.OrderInfoMapper;
-import com.nekostoryweb.dao.po.Account;
+import com.nekostoryweb.contants.CacheMap;
 import com.nekostoryweb.dao.po.OrderInfo;
 import com.nekostoryweb.service.front.AccountService;
 import com.nekostoryweb.utils.RequestBodyFilter;
@@ -44,8 +42,15 @@ public class AccountController {
         Map<String, Object> result = new HashMap<>();
         CacheMap.getCacheMap().remove(orderInfo.getTelephone());//用后作废
         if (checkCode != null && checkCode.equals(params.get("verifyCode"))) {
-            result.put("resultCode", accountService.insertOrderInfo(params.get("telephone"), params.get("phoneType")));
-            result.put("resultMsg", "预约成功");
+            int code = accountService.insertOrderInfo(params.get("telephone"), params.get("phoneType"));
+            result.put("resultCode", code);
+            switch (code){
+                case 1:
+                    result.put("resultMsg", "预约成功");
+                    break;
+                case 2 :
+                    result.put("resultMsg", "已经预约过");
+            }
             return WebUtil.result(result);
         }
         result.put("resultCode", 0);

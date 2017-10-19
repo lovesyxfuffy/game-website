@@ -1,8 +1,8 @@
 package com.nekostoryweb.controller.front;
 
-import com.nekostoryweb.Contants.ArticleType;
-import com.nekostoryweb.Contants.ImgsType;
-import com.nekostoryweb.Contants.StrategyType;
+import com.nekostoryweb.contants.ArticleType;
+import com.nekostoryweb.contants.ImgsType;
+import com.nekostoryweb.contants.StrategyType;
 import com.nekostoryweb.dao.dto.FrontPage;
 import com.nekostoryweb.service.front.ArticleService;
 import com.nekostoryweb.utils.RequestBodyFilter;

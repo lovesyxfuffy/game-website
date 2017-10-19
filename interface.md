@@ -290,7 +290,7 @@ response:
 ```json
 {
   "data":{
-    videoUrl:"https://xxxx.xxxx.xxx/xxxx"
+    "videoUrl":"https://xxxx.xxxx.xxx/xxxx"
   },
   "status":1
 }
@@ -444,7 +444,7 @@ response:
       {
         "typeCode":4,
         "typeName":"最新",
-        "typeLink":"/getArticleDetail/",
+        "typeLink":"/getArticleDetail/"
       },{},{},{}
     ]
   }
@@ -462,7 +462,7 @@ request:``{}``
 response:
 ```json
 {
-  data:[
+  "data":[
    {
       "id":3,
       "title":"这是标题",
@@ -473,7 +473,7 @@ response:
 
 }
 ```
-#### 19.获取首页轮播图
+#### 19.获取首页轮播图 (update 17-10-19 轮播图可点击)
 url: /front/mainPage/getImgs
 
 method:post
@@ -484,7 +484,10 @@ response:
 ```json
 {
     "data":[
-      "xxxxxxxxxxx","xxxxxxxxxxx","xxxxxxx"
+      {
+        "imgUrl":"xxxxxxxxxx",
+        "href":"xxxxxxxxxx"
+      },{},{},{}
     ],
     "status":1
 }

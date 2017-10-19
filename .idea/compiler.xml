@@ -22,13 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="game-website" />
-        <module name="neko-story-web" />
+        <module name="com.nekostoryweb" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="game-website" target="1.5" />
-      <module name="neko-story-web" target="1.8" />
+      <module name="com.nekostoryweb" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

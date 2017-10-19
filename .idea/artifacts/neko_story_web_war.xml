@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="neko-story-web:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="com.nekostoryweb-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="neko-story-web:war exploded" />
-    </root>
-  </artifact>
-</component>
