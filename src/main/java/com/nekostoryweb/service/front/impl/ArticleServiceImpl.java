@@ -78,7 +78,7 @@ public class ArticleServiceImpl implements ArticleService {
             rowMap.put("imgUrl",row.getImgUrl());
             rowMap.put("href","http://139.224.222.90/newsDetail/"+row.getId());
             returnList.add(rowMap);
-        } );
+        });
         return returnList;
     }
 

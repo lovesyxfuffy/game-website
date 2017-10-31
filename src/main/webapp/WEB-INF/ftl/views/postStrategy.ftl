@@ -71,25 +71,41 @@
 
                     <div class="checkbox">
                         <label>
-                            <input name="type" value="1" type="checkbox" class="ace">
+                            <input name="type" value="1"
+                                <#if strategy.type?exists&&strategy.type%2!=0>
+                                   checked="checked"
+                                </#if>
+                                   type="checkbox" class="ace">
                             <span class="lbl"> 新手</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input name="type" value="2" type="checkbox" class="ace">
+                            <input name="type"
+                                <#if strategy.type?exists&&strategy.type/2%2!=0>
+                                   checked="checked"
+                                </#if>
+                                   value="2" type="checkbox" class="ace">
                             <span class="lbl"> 进阶</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input name="type" value="4" type="checkbox" class="ace">
+                            <input name="type"
+                                <#if strategy.type?exists&&strategy.type/4%2!=0>
+                                   checked="checked"
+                                </#if>
+                                   value="4" type="checkbox" class="ace">
                             <span class="lbl"> 养成</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input name="type" value="8" type="checkbox" class="ace">
+                            <input name="type"
+                                <#if strategy.type?exists&&strategy.type/8%2!=0>
+                                   checked="checked"
+                                </#if>
+                                   value="8" type="checkbox" class="ace">
                             <span class="lbl"> 经验</span>
                         </label>
                     </div>
@@ -114,7 +130,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="form-field-1">排序</label>
 
             <div class="col-sm-9">
-                <input type="text" id="orderKey" name="orderKey" value="${strategy.orderKey}" placeholder="orderKey"
+                <input type="text" id="orderKey" name="orderKey" value="${strategy.orderKey+""}" placeholder="orderKey"
                        class="input-small"/>
             </div>
         </div>

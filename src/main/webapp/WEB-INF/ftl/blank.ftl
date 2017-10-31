@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<#setting number_format="#">
 <html lang="en">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>

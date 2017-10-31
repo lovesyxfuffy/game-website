@@ -68,19 +68,31 @@
 
                     <div class="checkbox">
                         <label>
-                            <input name="type" value="1" type="checkbox" class="ace">
+                            <input name="type" value="1" type="checkbox"
+                                <#if imgs.type%2!=0>
+                                   checked="checked"
+                                </#if>
+                                   class="ace">
                             <span class="lbl"> 同人创作</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input name="type" value="2" type="checkbox" class="ace">
+                            <input name="type" value="2" type="checkbox"
+                                <#if imgs.type/2%2!=0>
+                                   checked="checked"
+                                </#if>
+                                   class="ace">
                             <span class="lbl"> cos欣赏</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input name="type" value="4" type="checkbox" class="ace">
+                            <input name="type"
+                                <#if imgs.type/4%2!=0>
+                                   checked="checked"
+                                </#if>
+                                   value="4" type="checkbox" class="ace">
                             <span class="lbl"> 视频直播</span>
                         </label>
                     </div>
@@ -93,7 +105,11 @@
             <label class="col-sm-3 control-label no-padding-right" for="form-field-1">精选</label>
 
             <div class="col-sm-9">
-                <input name="isSelect" id="upToDate" value="${imgs.isSelect}" class="ace ace-switch ace-switch-5"
+                <input name="isSelect" id="upToDate"
+                    <#if imgs.isSelect ==1>
+                       checked="checked"
+                    </#if>
+                       value="${imgs.isSelect}" class="ace ace-switch ace-switch-5"
                        type="checkbox">
                 <span class="lbl"></span>
             </div>
@@ -103,7 +119,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="form-field-1">排序</label>
 
             <div class="col-sm-9">
-                <input type="text" id="orderKey" name="orderKey" value="${imgs.orderKey}" placeholder="orderKey"
+                <input type="text" id="orderKey" name="orderKey" value="${imgs.orderKey+""}" placeholder="orderKey"
                        class="input-small"/>
             </div>
         </div>
@@ -114,7 +130,7 @@
             <div class="col-sm-9">
                 <input type="text" id="videoUrl" name="videoUrl"
                     <#if imgs.videoUrl?exists>
-                       value="${imgs.videoUrl}"
+                       value="${imgs.videoUrl?xhtml}"
                     </#if>
                        placeholder="videoUrl"
                        class="col-xs-10 col-sm-5"/>

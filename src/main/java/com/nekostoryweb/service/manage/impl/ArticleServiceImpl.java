@@ -34,7 +34,7 @@ public class ArticleServiceImpl implements ArticleService {
     public void saveArticle(ArticleDto articleDto) {
         Article article = new Article();
         BeanUtils.copyProperties(articleDto, article);
-        article.setContent(article.getContent().replace("&lt;embed","<embed").replace("&gt;&lt;/embed&gt;","></embed>"));
+        article.setContent(article.getContent().replace("&lt;embed","<embed").replace("&gt;&lt;/embed&gt;","></embed>").replace("&lt;video","<video").replace("&gt;&lt;/video&gt;","></video>"));
         articleMapper.insert(article);
     }
 
@@ -43,7 +43,8 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = new Article();
         BeanUtils.copyProperties(articleDto, article);
         article.setId(articleId);
-        article.setContent(article.getContent().replace("&lt;embed","<embed").replace("&gt;&lt;/embed&gt;","></embed>"));
+        article.setContent(article.getContent().replace("&lt;embed","<embed").replace("&gt;&lt;/embed&gt;","></embed>").replace("&lt;video","<video").replace("&gt;&lt;/video&gt;","></video>")
+                .replace("&lt;video","<video").replace("&gt;&lt;/video&gt;","></video>"));
 
         articleMapper.updateByPrimaryKeySelective(article);
     }
@@ -53,13 +54,17 @@ public class ArticleServiceImpl implements ArticleService {
         Strategy strategy = new Strategy();
         BeanUtils.copyProperties(strategyDto, strategy);
         strategy.setId(strategyId);
-        strategy.setContent(strategy.getContent().replace("&lt;embed","<embed").replace("&gt;&lt;/embed&gt;","></embed>"));
+        strategy.setContent(strategy.getContent().replace("&lt;embed","<embed").replace("&gt;&lt;/embed&gt;","></embed>").replace("&lt;video","<video").replace("&gt;&lt;/video&gt;","></video>"));
         strategyMapper.updateByPrimaryKeySelective(strategy);
     }
 
     @Override
     public void updateImg(ImgDto imgDto, Integer imgId){
         Imgs imgs = new Imgs();
+        if (imgDto.getVideoUrl() != null && !imgDto.getVideoUrl().equals(""))
+            imgDto.setIsVideo((byte) 1);
+        else
+            imgDto.setIsVideo((byte) 0);
         BeanUtils.copyProperties(imgDto, imgs);
         imgs.setId(imgId);
         imgsMapper.updateByPrimaryKeySelective(imgs);
@@ -69,7 +74,7 @@ public class ArticleServiceImpl implements ArticleService {
     public void saveStrategy(StrategyDto strategyDto) {
         Strategy strategy = new Strategy();
         BeanUtils.copyProperties(strategyDto, strategy);
-        strategy.setContent(strategy.getContent().replace("&lt;embed","<embed").replace("&gt;&lt;/embed&gt;","></embed>"));
+        strategy.setContent(strategy.getContent().replace("&lt;embed","<embed").replace("&gt;&lt;/embed&gt;","></embed>").replace("&lt;video","<video").replace("&gt;&lt;/video&gt;","></video>"));
 
         strategyMapper.insert(strategy);
     }

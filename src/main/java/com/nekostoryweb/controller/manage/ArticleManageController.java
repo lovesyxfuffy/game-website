@@ -53,7 +53,7 @@ public class ArticleManageController {
     @RequestMapping(value = "uploadArticle", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> uploadArticle(@RequestParam("imgFile") CommonsMultipartFile imgFile,
                                                              @RequestParam("type") Integer[] typeCodes,
-                                                             ArticleDto articleDto,HttpServletRequest request) {
+                                                             ArticleDto articleDto, HttpServletRequest request) {
 
         int type = 0;
         for (int row : typeCodes) {
@@ -66,28 +66,61 @@ public class ArticleManageController {
         return WebUtil.result("");
     }
 
-    @RequestMapping(value = "updateArticle",method = RequestMethod.POST)
-    public ResponseEntity<Map<String,Object>> updateArticle(ArticleDto articleDto, @RequestParam("articleId")Integer articleId){
-        articleService.updateArticle(articleDto,articleId);
+    @RequestMapping(value = "updateArticle", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> updateArticle(
+            @RequestParam("imgFile") CommonsMultipartFile imgFile,
+            @RequestParam("type") Integer[] typeCodes,
+            ArticleDto articleDto, @RequestParam("articleId") Integer articleId) {
+        int type = 0;
+        for (int row : typeCodes) {
+            type += row;
+        }
+        articleDto.setType(type);
+        String fileName = metaService.saveFile(imgFile);
+        if (fileName != null)
+            articleDto.setImgUrl(staticFilePath + fileName);
+        articleService.updateArticle(articleDto, articleId);
         return WebUtil.result("");
     }
 
-    @RequestMapping(value = "updateStrategy",method = RequestMethod.POST)
-    public ResponseEntity<Map<String,Object>> updateStrategy(StrategyDto strategy, @RequestParam("strategyId")Integer strategyId){
-        articleService.updateStrategy(strategy,strategyId);
+    @RequestMapping(value = "updateStrategy", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> updateStrategy(StrategyDto strategy,
+                                                              @RequestParam("imgFile") CommonsMultipartFile imgFile,
+                                                              @RequestParam("type") Integer[] typeCodes,
+                                                              @RequestParam("strategyId") Integer strategyId) {
+        int type = 0;
+        for (int row : typeCodes) {
+            type += row;
+        }
+        strategy.setType(type);
+        String fileName = metaService.saveFile(imgFile);
+        if (fileName != null)
+            strategy.setImgUrl(staticFilePath + fileName);
+        articleService.updateStrategy(strategy, strategyId);
         return WebUtil.result("");
     }
 
-    @RequestMapping(value = "updateImgs",method = RequestMethod.POST)
-    public ResponseEntity<Map<String,Object>> updateImgs(ImgDto imgDto,@RequestParam("imgId")Integer imgId){
-        articleService.updateImg(imgDto,imgId);
+    @RequestMapping(value = "updateImgs", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> updateImgs(ImgDto imgDto,
+                                                          @RequestParam("imgFile") CommonsMultipartFile imgFile,
+                                                          @RequestParam("type") Integer[] typeCodes,
+                                                          @RequestParam("imgId") Integer imgId) {
+        int type = 0;
+        for (int row : typeCodes) {
+            type += row;
+        }
+        imgDto.setType(type);
+        String fileName = metaService.saveFile(imgFile);
+        if (fileName != null)
+            imgDto.setImgUrl(staticFilePath + fileName);
+        articleService.updateImg(imgDto, imgId);
         return WebUtil.result("");
     }
 
-    @RequestMapping(value = "uploadStrategy",method = RequestMethod.POST)
-    public ResponseEntity<Map<String,Object>> uploadStrategy(@RequestParam("imgFile") CommonsMultipartFile imgFile,
-                                                             @RequestParam("type") Integer[] typeCodes,
-                                                             StrategyDto strategyDto){
+    @RequestMapping(value = "uploadStrategy", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> uploadStrategy(@RequestParam("imgFile") CommonsMultipartFile imgFile,
+                                                              @RequestParam("type") Integer[] typeCodes,
+                                                              StrategyDto strategyDto) {
         int type = 0;
         for (int row : typeCodes) {
             type += row;
@@ -99,10 +132,10 @@ public class ArticleManageController {
         return WebUtil.result("");
     }
 
-    @RequestMapping(value = "uploadImgs",method = RequestMethod.POST)
-    public ResponseEntity<Map<String,Object>> uploadImgs(@RequestParam("imgFile") CommonsMultipartFile imgFile,
-                                                         @RequestParam("type") Integer[] typeCodes,
-                                                         ImgDto imgDto){
+    @RequestMapping(value = "uploadImgs", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> uploadImgs(@RequestParam("imgFile") CommonsMultipartFile imgFile,
+                                                          @RequestParam("type") Integer[] typeCodes,
+                                                          ImgDto imgDto) {
         int type = 0;
         for (int row : typeCodes) {
             type += row;
@@ -114,77 +147,79 @@ public class ArticleManageController {
         return WebUtil.result("");
     }
 
-    @RequestMapping(value = "getImgsList",method = RequestMethod.GET)
-    public ResponseEntity<Map<String,Object>> getImgsList(Page page){
+    @RequestMapping(value = "getImgsList", method = RequestMethod.GET)
+    public ResponseEntity<Map<String, Object>> getImgsList(Page page) {
         return WebUtil.result(articleService.getImgsList(page));
     }
 
-    @RequestMapping(value = "getArticleList",method = RequestMethod.GET)
-    public ResponseEntity<Map<String,Object>> getArticleList(Page page){
+    @RequestMapping(value = "getArticleList", method = RequestMethod.GET)
+    public ResponseEntity<Map<String, Object>> getArticleList(Page page) {
         return WebUtil.result(articleService.getArticleList(page));
     }
 
-    @RequestMapping(value = "getStrategyList",method = RequestMethod.GET)
-    public ResponseEntity<Map<String,Object>> getStrategyList(Page page){
+    @RequestMapping(value = "getStrategyList", method = RequestMethod.GET)
+    public ResponseEntity<Map<String, Object>> getStrategyList(Page page) {
         return WebUtil.result(articleService.getStrategyList(page));
     }
 
-    @RequestMapping(value = "editArticle",method = RequestMethod.POST)
-    public ResponseEntity<Map<String,Object>> editArticle(@RequestParam("oper") String oper,@RequestParam("id") String ids){
+    @RequestMapping(value = "editArticle", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> editArticle(@RequestParam("oper") String oper, @RequestParam("id") String ids) {
         String[] idListStr = ids.split(",");
-        for(String idStr :idListStr){
-            if("del".equals(oper))
+        for (String idStr : idListStr) {
+            if ("del".equals(oper))
                 articleService.deleteArticle(Integer.parseInt(idStr));
         }
 
         return WebUtil.result("");
     }
 
-    @RequestMapping(value = "editStrategy",method = RequestMethod.POST)
-    public ResponseEntity<Map<String,Object>> editStrategy(@RequestParam("oper") String oper,@RequestParam("id") String ids){
+    @RequestMapping(value = "editStrategy", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> editStrategy(@RequestParam("oper") String oper, @RequestParam("id") String ids) {
         String[] idListStr = ids.split(",");
-        for(String idStr :idListStr){
-            if("del".equals(oper))
+        for (String idStr : idListStr) {
+            if ("del".equals(oper))
                 articleService.deleteStrategy(Integer.parseInt(idStr));
         }
 
         return WebUtil.result("");
     }
 
-    @RequestMapping(value = "editImgs",method = RequestMethod.POST)
-    public ResponseEntity<Map<String,Object>> editImgs(@RequestParam("oper") String oper,@RequestParam("id") String ids){
+    @RequestMapping(value = "editImgs", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> editImgs(@RequestParam("oper") String oper, @RequestParam("id") String ids) {
         String[] idListStr = ids.split(",");
-        for(String idStr :idListStr){
-            if("del".equals(oper))
+        for (String idStr : idListStr) {
+            if ("del".equals(oper))
                 articleService.deleteImgs(Integer.parseInt(idStr));
         }
         return WebUtil.result("");
     }
 
 
-    @RequestMapping(value = "updateArticle/{articleId}",method = RequestMethod.GET)
-    public String updateArticle(@PathVariable("articleId") Integer articleId, Model model, HttpServletRequest request){
+    @RequestMapping(value = "updateArticle/{articleId}", method = RequestMethod.GET)
+    public String updateArticle(@PathVariable("articleId") Integer articleId, Model model, HttpServletRequest request) {
         Article article = articleMapper.selectByPrimaryKey(articleId);
-        model.addAttribute("requestURI","");
-        model.addAttribute("article",article);
+        model.addAttribute("requestURI", "");
+        model.addAttribute("article", article);
 
         return "views/postArticle.ftl";
     }
 
-    @RequestMapping(value = "updateStrategy/{strategyId}",method = RequestMethod.GET)
-    public String updateStrategy( Model model, HttpServletRequest request, @PathVariable("strategyId") Integer strategyId){
+    @RequestMapping(value = "updateStrategy/{strategyId}", method = RequestMethod.GET)
+    public String updateStrategy(Model model, HttpServletRequest request, @PathVariable("strategyId") Integer strategyId) {
         Strategy strategy = strategyMapper.selectByPrimaryKey(strategyId);
-        model.addAttribute("requestURI","");
-        model.addAttribute("strategy",strategy);
+        model.addAttribute("requestURI", "");
+        model.addAttribute("strategy", strategy);
 
         return "views/postStrategy.ftl";
     }
 
-    @RequestMapping(value = "updateImgs/{imgsId}",method = RequestMethod.GET)
-    public String updateImgs(Model model, HttpServletRequest request, @PathVariable("imgsId") Integer imgsId){
-        Imgs imgs= imgsMapper.selectByPrimaryKey(imgsId);
-        model.addAttribute("requestURI","");
-        model.addAttribute("imgs",imgs);
+    @RequestMapping(value = "updateImgs/{imgsId}", method = RequestMethod.GET)
+    public String updateImgs(Model model,
+                             HttpServletRequest request, @PathVariable("imgsId") Integer imgsId) {
+
+        Imgs imgs = imgsMapper.selectByPrimaryKey(imgsId);
+        model.addAttribute("requestURI", "");
+        model.addAttribute("imgs", imgs);
 
         return "views/postImgs.ftl";
     }

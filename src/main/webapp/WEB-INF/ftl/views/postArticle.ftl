@@ -68,31 +68,51 @@
 
                     <div class="checkbox">
                         <label>
-                            <input name="type" value="1" type="checkbox" class="ace">
+                            <input name="type" value="1"
+                                   <#if article.type%2 !=0 >
+                                   checked="checked"
+                                   </#if>
+                                   type="checkbox" class="ace">
                             <span class="lbl"> 新闻</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input name="type" value="2" type="checkbox" class="ace">
+                            <input name="type" value="2" type="checkbox"
+                                <#if article.type/2%2!=0>
+                                   checked="checked"
+                                </#if>
+                                   class="ace">
                             <span class="lbl"> 公告</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input name="type" value="4" type="checkbox" class="ace">
+                            <input name="type" value="4"
+                                <#if article.type/4%2 !=0>
+                                   checked="checked"
+                                </#if>
+                                   type="checkbox" class="ace">
                             <span class="lbl"> 线上活动</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input name="type" value="8" type="checkbox" class="ace">
+                            <input name="type" value="8"
+                                <#if article.type/8%2!=0>
+                                   checked="checked"
+                                </#if>
+                                   type="checkbox" class="ace">
                             <span class="lbl"> 线下活动</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input name="type" value="16" type="checkbox" class="ace">
+                            <input name="type" value="16"
+                                <#if article.type/16%2!=0>
+                                   checked="checked"
+                                </#if>
+                                   type="checkbox" class="ace">
                             <span class="lbl"> 隐藏分类</span>
                         </label>
                     </div>
@@ -119,7 +139,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="form-field-1">排序</label>
 
             <div class="col-sm-9">
-                <input type="text" id="orderKey" name="orderKey" value="${article.orderKey}" placeholder="orderKey"
+                <input type="text" id="orderKey" name="orderKey" value="${article.orderKey+""}" placeholder="orderKey"
                        class="input-small"/>
             </div>
         </div>
